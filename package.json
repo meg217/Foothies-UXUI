@@ -1,0 +1,44 @@
+{
+  "name": "uiux-vscode",
+  "version": "1.0.0",
+  "description": "ecommerce resturaunt website",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VenkatRavichandiran/UI-UX-Project.git"
+  },
+  "keywords": [
+    "ecommerce",
+    "resturaunt",
+    "ordering",
+    "food",
+    "Nodejs",
+    "MongoDB",
+    "JavaScript"
+  ],
+  "author": "Meagan Venkat Abdu Kevin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VenkatRavichandiran/UI-UX-Project/issues"
+  },
+  "homepage": "https://github.com/VenkatRavichandiran/UI-UX-Project#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "bootstrap": "^5.3.2",
+    "cookie-parser": "^1.4.6",
+    "css": "^3.0.0",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.1",
+    "express-session": "^1.17.3",
+    "express-validator": "^7.0.1",
+    "html": "^1.0.0",
+    "mongodb": "^6.2.0",
+    "mongoose": "^7.6.3",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0"
+  }
+}
