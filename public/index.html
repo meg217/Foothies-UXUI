@@ -24,7 +24,7 @@
     <div class="container">
         <!-- Logo on the left (larger size) -->
         <a href="#" class="navbar-brand">
-            <img src="assets/logo.png" alt="Logo" width="150" height="150">
+            <img src="assets/FoothiesLogoTransparent.png" alt="Logo" width="180">
         </a>
         
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav">
@@ -56,15 +56,33 @@
                     <i class="bi bi-person fs-2"></i>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                    <li><a class="dropdown-item" href="login.html">Login</a></li>
-                    <li><a class="dropdown-item" href="register.html">Sign Up</a></li>
+                    <li><button class="dropdown-item" id="loginButton">Login</button></li>
+                    <li><button class="dropdown-item" id="signupButton">Sign Up</button></li>
                 </ul>
             </div>
         </div>
     </div>
 </nav>
 
+<!-- Login Modal -->
+<div id="loginModal" class="modal">
 
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h1>Login</h1>
+    <form action="/auth/login" method="POST">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <button type="submit">Login</button>
+    </form>
+    </div>
+  
+  </div>
 
 
         <!-- Masthead-->
@@ -214,9 +232,10 @@
             </div>
         </footer>
         <!-- Bootstrap core JS-->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="js/loginModal.js"></script>
     </body>
 </html>
