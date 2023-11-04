@@ -1,10 +1,15 @@
 var express = require("express");
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-mongoose.connect(
-  "mongodb+srv://meaganbmueller:rosebud560@ui2023.d1ghmxu.mongodb.net/?retryWrites=true&w=majority",
-  { useUnifiedTopology: true, useNewUrlParser: true }
-);
+mongoose
+  .connect(
+    "mongodb+srv://meaganbmueller:rosebud560@ui2023.d1ghmxu.mongodb.net/gulpGalore",
+    {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+      dbName: "gulpGalore",
+    }
+  )
 
 //schema for the user card info
 const CardInfoSchema = new Schema({
