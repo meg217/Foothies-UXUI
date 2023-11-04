@@ -25,13 +25,14 @@
     <!-- Core theme -->
     <link href="css/bootstrap.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
-    <!-- Modal CSS-->
     <!-- Your HTML code here -->
-    <link rel="stylesheet" type="text/css" href="css/loginModal.css" />
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav
+      style="height: 9.37rem"
+      class="navbar navbar-expand-lg navbar-light bg-light"
+    >
       <div class="container">
         <!-- Logo on the left (larger size) -->
         <a href="#" class="navbar-brand">
@@ -98,20 +99,24 @@
               aria-labelledby="profileDropdown"
             >
               <li>
-                <a class="dropdown-item" id="loginButton" href="#">Login</a>
+                <a class="dropdown-item" id="loginButton" href="login.html"
+                  >Login</a
+                >
               </li>
               <li>
-                <a class="dropdown-item" id="signupButton" href="#">Sign Up</a>
+                <a class="dropdown-item" id="signupButton" href="login.html"
+                  >Sign Up</a
+                >
               </li>
             </ul>
           </div>
         </div>
       </div>
     </nav>
-
-    <!-- Login Modal -->
+    <!--
+    Login Modal
     <div id="loginModal" class="modal">
-      <!-- Modal content -->
+      Modal content
       <div class="modal-content">
         <span class="close">&times;</span>
         <h1>Login</h1>
@@ -137,11 +142,11 @@
           <button type="submit" class="btn btn-primary">Login</button>
         </form>
       </div>
-    </div>
+    </div> 
 
-    <!-- Signup Modal -->
+     Signup Modal
     <div id="signupModal" class="modal">
-      <!-- Modal content -->
+       Modal content 
       <div class="modal-content">
         <span class="close">&times;</span>
         <h1>Sign Up</h1>
@@ -194,7 +199,7 @@
           <button class="btn btn-primary" type="submit">Register</button>
         </form>
       </div>
-    </div>
+    </div>-->
 
     <!-- Masthead-->
     <header class="masthead">
@@ -415,7 +420,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js/loginModal.js"></script>
-    <script src="js/signupModal.js"></script>
   </body>
 </html>
