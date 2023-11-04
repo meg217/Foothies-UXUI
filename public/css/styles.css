@@ -10967,3 +10967,62 @@ footer.footer {
   text-decoration: none;
   cursor: pointer;
 }
+
+.sidebar {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  width: 250px;
+  float: left;
+}
+
+.sidebar h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+.sidebar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Custom CSS for the product list */
+.product-list {
+  margin-left: 270px; /* To account for the sidebar width */
+  padding: 20px;
+}
+
+.product-list h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.product-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.product-list li {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.product-list h3 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.product-list p {
+  font-size: 16px;
+}

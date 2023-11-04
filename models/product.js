@@ -25,16 +25,16 @@ const ProductSchema = new Schema({
     required: true,
     unique: true,
   },
-  product_category: {
+  category: {
     type: String,
     required: true,
   },
-  product_name: {
+  name: {
     type: String,
     required: true,
     unique: true,
   },
-  product_price: {
+  price: {
     type: Number,
     required: true,
   },

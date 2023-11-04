@@ -53,7 +53,7 @@ router.get('/register', (req, res) => {
 });
 
 router.post('/register', (req, res) => {
-    const { firstName, lastName, email, password, phoneNumber } = req.body;
+    const { first_name, last_name, email, password, phone_number } = req.body;
     
     // check if user and email already exist
     User.findOne({ email })
@@ -74,11 +74,11 @@ router.post('/register', (req, res) => {
 
         // Create a new User and save to db
         const newUser = new User({
-            firstName,
-            lastName,
+            first_name,
+            last_name,
             email,
             password: hash,
-            phoneNumber,
+            phone_number,
             address: {
                 country: null,
                 city: null,
@@ -87,7 +87,7 @@ router.post('/register', (req, res) => {
             }
         });
 
-        
+
         //catch new user save error
         newUser.save()
         .then(() => {
