@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Fetch and display all products by default (set 'all' as the default category)
+    fetchAndDisplayProducts('all'); //fetch all by default
     const productsList = document.getElementById('products-list');
+    allProductsLink.classList.add('active');
 
     // Function to fetch and display products based on category
     function fetchAndDisplayProducts(category) {
@@ -25,13 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    // Fetch and display all products by default (set 'all' as the default category)
-    fetchAndDisplayProducts(); //fetch all by default
-    allProductsLink.classList.add('active');
-
-    // Set the "All Products" tab as the active tab
-    const allProductsLink = document.querySelector('.sidebar a[href="/products"]');
-    allProductsLink.classList.add('active');
 
     // Event listener for category links in the sidebar
     document.querySelectorAll('.sidebar a').forEach(categoryLink => {

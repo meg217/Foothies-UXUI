@@ -2,21 +2,28 @@
 
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
 const Product = require('../models/Product');
-const path = require('path');
 const mongoose = require('mongoose');
 
-router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'menu.html'));
+router.get('/menu', (req, res) => {
+    //res.sendFile(path.join(__dirname, '../public', 'menu.html'));
+    //res.render('menu.html');
+    Product.find({}, (err, products) => {
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+            res.render('menu', { products: products });
+        }
+    });
 });
 
 router.get('/api/menu/category/:category', (req, res) => {
     const category = req.params.category;
-    // Define the query based on whether a category is provided
-    const query = category ? { product_category: category } : {};
+    // Define query
+    const query = category ? { category: category } : {};
 
-    // Query the database for products based on the category or return all products
+    // Query the database for products 
     Product.find(query, (err, products) => {
         if (err) {
             console.error(err);
