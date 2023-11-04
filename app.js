@@ -8,11 +8,11 @@ const app = express();
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Body parser middleware
+// Body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Session middleware for session management (optional)
+// Session management ???
 app.use(session({
   secret: 'your_secret_key',
   resave: false,
@@ -22,15 +22,11 @@ app.use(session({
 // Routes
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/user');
+const menuRoutes = require('./routes/menu');
 
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
-
-//when loading up the db this is the first
-// app.get('/', (req, res) => {
-//   // Render the login page
-//   res.sendFile(path.join(__dirname, 'public', 'login.html'));
-// });
+app.use('/menu', menuRoutes);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
