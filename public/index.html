@@ -83,6 +83,35 @@
   
   </div>
 
+  <!-- Signup Modal -->
+<div id="signupModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h1>Sign Up</h1>
+    <form action="/auth/register" method="POST">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+        <br>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" required>
+        <br>
+        <button type="submit">Register</button>
+    </form>
+    </div>
+  
+  </div>
+
 
         <!-- Masthead-->
         <header class="masthead">
@@ -236,5 +265,6 @@
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="js/loginModal.js"></script>
+        <script src="js/signupModal.js"></script>
     </body>
 </html>
