@@ -22,9 +22,9 @@
   "author": "Meagan Venkat Abdu Kevin",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/VenkatRavichandiran/UI-UX-Project/issues"
+    "url": "https://github.com/meg217/Foothies-UXUI/issues"
   },
-  "homepage": "https://github.com/VenkatRavichandiran/UI-UX-Project#readme",
+  "homepage": "https://github.com/meg217/Foothies-UXUI#readme",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",

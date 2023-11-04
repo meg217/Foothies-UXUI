@@ -2,10 +2,10 @@
 
 const express = require('express');
 const router = express.Router();
-const Product = require('../models/Product');
+const Product = require('../models/product');
 const mongoose = require('mongoose');
 
-router.get('/menu', (req, res) => {
+router.get('/', (req, res) => {
     //res.sendFile(path.join(__dirname, '../public', 'menu.html'));
     //res.render('menu.html');
     Product.find({}, (err, products) => {

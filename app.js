@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const app = express();
 
-
+//view engine for ejs and view directory
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
