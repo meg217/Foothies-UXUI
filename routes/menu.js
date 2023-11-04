@@ -2,6 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
+const path = require('path');
 const Product = require('../models/product');
 const mongoose = require('mongoose');
 
@@ -28,7 +29,7 @@ router.get('/:category', (req, res) => {
     Product.find(query)
         .then(products => {
             console.log('Products:', products);
-            //res.json(products);
+            res.render('menu', { products });
         })
         .catch(err => {
             console.error(err);
