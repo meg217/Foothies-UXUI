@@ -35,6 +35,7 @@ app.use('/user', userRoutes);
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
+  console.log("Running on this URL: http://localhost:3000/");
 });
 
 
