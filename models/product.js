@@ -25,6 +25,10 @@ const ProductSchema = new Schema({
     required: true,
     unique: true,
   },
+  product_category: {
+    type: String,
+    required: true,
+  },
   product_name: {
     type: String,
     required: true,
@@ -34,9 +38,10 @@ const ProductSchema = new Schema({
     type: Number,
     required: true,
   },
-  amount_selected: {
-    type: Number,
+  description: {
+    type: String,
     required: true,
+    unique: true,
   },
 });
 

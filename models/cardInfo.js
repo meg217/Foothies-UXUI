@@ -6,7 +6,7 @@ mongoose.connect(
   { useUnifiedTopology: true, useNewUrlParser: true }
 );
 
-//schema for the user address
+//schema for the user card info
 const AddressSchema = new Schema({
   User_Id: {
     type: Number,
