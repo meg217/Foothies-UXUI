@@ -73,8 +73,21 @@ router.post('/register', (req, res) => {
         }
 
         // Create a new User and save to db
-        const newUser = new User({ firstName, lastName, email, password: hash, phoneNumber });
-    
+        const newUser = new User({
+            firstName,
+            lastName,
+            email,
+            password: hash,
+            phoneNumber,
+            address: {
+                country: null,
+                city: null,
+                state: null,
+                street1: null
+            }
+        });
+
+        
         //catch new user save error
         newUser.save()
         .then(() => {
