@@ -3,19 +3,13 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 mongoose
   .connect(
-    "mongodb+srv://meaganbmueller:rosebud560@ui2023.d1ghmxu.mongodb.net/?retryWrites=true&w=majority",
+    "mongodb+srv://meaganbmueller:rosebud560@ui2023.d1ghmxu.mongodb.net/gulpGalore",
     {
       useUnifiedTopology: true,
       useNewUrlParser: true,
+      dbName: "gulpGalore",
     }
   )
-
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((err) => {
-    console.error("Error connecting to MongoDB:", err);
-  });
 
 //schema for the user login
 //UserId, firstName, lastName, email, password, phoneNumber
@@ -45,6 +39,6 @@ const ProductSchema = new Schema({
   },
 });
 
-const Product = mongoose.model("products", UserSchema);
+const Product = mongoose.model("products", ProductSchema);
 
 module.exports = Product;
