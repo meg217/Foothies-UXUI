@@ -7,26 +7,34 @@ mongoose.connect(
 );
 
 //schema for the user card info
-const AddressSchema = new Schema({
+const CardInfoSchema = new Schema({
   User_Id: {
     type: Number,
     unique: true,
   },
-  street: {
+  card_fullname: {
     type: String,
     required: true,
   },
-  city: {
+  card_number: {
     type: Number,
     required: true,
+    unique: true,
   },
-  state: {
+  expiration_date: {
     type: String,
     required: true,
   },
-  zip: {
+  cvv_cvc: {
     type: Number,
     required: true,
+  },
+  billing_address: {
+    country: String,
+    city: String,
+    state: String,
+    street: String,
+    zip: Number,
   },
 });
 
