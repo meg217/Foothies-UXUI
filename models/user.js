@@ -45,11 +45,17 @@ password: {
 phoneNumber: {
     type: String,
     validate: {
-    validator: function(v) {
-        return /^\d{10}$/.test(v);
+        validator: function(v) {
+            return /^\d{10}$/.test(v);
+        },
+        message: "Invalid phone number"
+        }
     },
-    message: "Invalid phone number"
-    }
+    address: {
+        country: String,
+        city: String,
+        state: String,
+        street1: String
     }
 });
 
