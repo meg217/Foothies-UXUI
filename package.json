@@ -22,15 +22,16 @@
   "author": "Meagan Venkat Abdu Kevin",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/VenkatRavichandiran/UI-UX-Project/issues"
+    "url": "https://github.com/meg217/Foothies-UXUI/issues"
   },
-  "homepage": "https://github.com/VenkatRavichandiran/UI-UX-Project#readme",
+  "homepage": "https://github.com/meg217/Foothies-UXUI#readme",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "bootstrap": "^5.3.2",
     "cookie-parser": "^1.4.6",
     "css": "^3.0.0",
+    "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-fileupload": "^1.4.1",
     "express-session": "^1.17.3",

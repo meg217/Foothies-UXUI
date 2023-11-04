@@ -2,29 +2,39 @@
 
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
-const Product = require('../models/Product');
 const path = require('path');
+const Product = require('../models/product');
 const mongoose = require('mongoose');
 
 router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'menu.html'));
+    //res.sendFile(path.join(__dirname, '../public', 'menu.html'));
+    //res.render('menu.html');
+    Product.find({})
+        .then(products => {
+            res.render('menu', { products: products });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        })
 });
 
-router.get('/api/menu/category/:category', (req, res) => {
+router.get('/:category', (req, res) => {
     const category = req.params.category;
-    // Define the query based on whether a category is provided
-    const query = category ? { product_category: category } : {};
+    console.log('Category:', category);
+    // Define query
+    const query = category ? { category: category } : {};
 
-    // Query the database for products based on the category or return all products
-    Product.find(query, (err, products) => {
-        if (err) {
+    // Query the database for products 
+    Product.find(query)
+        .then(products => {
+            console.log('Products:', products);
+            res.render('menu', { products });
+        })
+        .catch(err => {
             console.error(err);
-            res.status(500).json({ error: 'Internal Server Error' });
-        } else {
-            res.json(products);
-        }
-    });
+            res.status(500).json({ error: 'Internal Server Error' }); 
+        })
 });
 
 //const Product = require('../models/product');

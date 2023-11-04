@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Menu</title>
+        <link rel="icon" type="image" href="assets/logo.png" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme -->
+        <link type="text/css" href="/css/bootstrap.css" rel="stylesheet" />
+        <link type="text/css" href="/css/styles.css" rel="stylesheet" />
+    </head>
+<body>
+        <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <!-- Logo on the left (larger size) -->
+        <a href="#" class="navbar-brand">
+            <img src="/assets/logo.png" alt="Logo" width="150" height="150">
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div id="main-nav" class="collapse navbar-collapse">
+            <ul class="navbar-nav mx-auto nav-tabs"> 
+                <li class="nav-item m-lg-4">
+                    <a href="#" class="nav-link link-primary active fs-5 underline-on-hover">Home</a>
+                </li>
+                <li class="nav-item m-lg-4">
+                    <a href="menu.html" class="nav-link fs-5 underline-on-hover">Menu</a>
+                </li>
+                <li class="nav-item m-lg-4">
+                    <a href="contact.html" class="nav-link fs-5 underline-on-hover">Contact</a>
+                </li>
+                <li class="nav-item m-lg-4">
+                    <a href="rewards.html" class="nav-link fs-5 underline-on-hover">Rewards</a>
+                </li>
+            </ul>
+
+            <!-- "Order Now" button -->
+            <a class="btn btn-primary mx-lg-5 fs-5" href="order.html">Order Now</a>
+            
+             <!-- Profile dropdown button with a circular person icon -->
+             <div class="dropdown">
+                <button class="btn btn-secondary rounded-circle dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person fs-2"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                    <li><a class="dropdown-item" href="login.html">Login</a></li>
+                    <li><a class="dropdown-item" href="register.html">Sign Up</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+    <div class="sidebar">
+        <h2>Menu Categories</h2>
+        <ul>
+            <li><a href="/menu">All Products</a></li>
+            <li><a href="/menu/foothies">Foothies</a></li>
+            <li><a href="/menu/smoothies">Smoothies</a></li>
+            <li><a href="/menu/sodas">Sodas</a></li>
+            <li><a href="/menu/juices">Juices</a></li>
+        </ul>
+    </div>
+
+    <div class="product-list">
+        <h1>Products</h1>
+        <ul>
+            <% products.forEach(product => { %>
+                <li>
+                    <h3><%= product.name %></h3>
+                    <p><%= product.description %></p>
+                    <p>Price: $<%= product.price %></p>
+                </li>
+            <% }); %>
+        </ul>
+    </div>
+</body>
+</html>
