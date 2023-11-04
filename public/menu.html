@@ -16,7 +16,68 @@
         <link href="css/styles.css" rel="stylesheet" />
     </head>
 <body>
+    <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <!-- Logo on the left (larger size) -->
+        <a href="#" class="navbar-brand">
+            <img src="assets/logo.png" alt="Logo" width="150" height="150">
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div id="main-nav" class="collapse navbar-collapse">
+            <ul class="navbar-nav mx-auto nav-tabs"> 
+                <li class="nav-item m-lg-4">
+                    <a href="#" class="nav-link link-primary active fs-5 underline-on-hover">Home</a>
+                </li>
+                <li class="nav-item m-lg-4">
+                    <a href="menu.html" class="nav-link fs-5 underline-on-hover">Menu</a>
+                </li>
+                <li class="nav-item m-lg-4">
+                    <a href="contact.html" class="nav-link fs-5 underline-on-hover">Contact</a>
+                </li>
+                <li class="nav-item m-lg-4">
+                    <a href="rewards.html" class="nav-link fs-5 underline-on-hover">Rewards</a>
+                </li>
+            </ul>
+
+            <!-- "Order Now" button -->
+            <a class="btn btn-primary mx-lg-5 fs-5" href="order.html">Order Now</a>
+            
+             <!-- Profile dropdown button with a circular person icon -->
+             <div class="dropdown">
+                <button class="btn btn-secondary rounded-circle dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person fs-2"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                    <li><a class="dropdown-item" href="login.html">Login</a></li>
+                    <li><a class="dropdown-item" href="register.html">Sign Up</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container position-relative">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6">
+                        <div class="text-center text-white">
+                            <!-- Page heading-->
+                            <h1 class="mb-5">Generate more leads with a professional landing page!</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
     <div class="sidebar">
+        <div class="container">
         <h2>Menu Categories</h2>
         <ul>
             <li><a href="/menu">All Products</a></li>
@@ -33,5 +94,6 @@
         </ul>
     </div>
     <script src="js/menu.js"></script>
+    </div>
 </body>
 </html>

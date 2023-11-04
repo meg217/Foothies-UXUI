@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to fetch and display products based on category
     function fetchAndDisplayProducts(category) {
-        fetch(`/api/menu/category/${category}`)
+        fetch(`/api/menu/${category}`)
             .then(response => response.json())
             .then(products => {
                 // Clear existing products
