@@ -22,7 +22,7 @@ router.post('/login', (req, res) => {
             if (!user) {
                console.log('no user found');
                 // User not found
-               // return res.render('login', { message: 'Invalid email or password' });
+               return res.sendFile(path.join(__dirname, '../public', 'login.html'));
             }
             // compare password with hashed password from bcrypt
             bcrypt.compare(password, user.password, (compareErr, isMatch) => {
