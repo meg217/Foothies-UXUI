@@ -11400,3 +11400,8 @@ footer.footer {
   /* border-radius: 20px; */
   padding-bottom: 10px;
 }
+
+.btn.active {
+  background: #cecece;
+  text-decoration: none;
+}
