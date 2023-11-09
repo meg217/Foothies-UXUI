@@ -44,13 +44,7 @@ const UserSchema = new Schema({
     //select: false
   },
   phone_number: {
-    type: String,
-    validate: {
-      validator: function (v) {
-        return /^\d{10}$/.test(v);
-      },
-      message: "Invalid phone number",
-    },
+    type: String
   },
   address: {
     country: String,
@@ -62,16 +56,16 @@ const UserSchema = new Schema({
 
 const User = mongoose.model("user", UserSchema);
 
-// Mongoose test, if fail then will say user not found
-User.findOne({ email: "john.doe@example.com" })
-  .exec()
-  .then((user) => {
-    if (!user) {
-      console.log("no user found");
-      // User not found
-      // return res.render('login', { message: 'Invalid email or password' });
-    }
-  });
+// // Mongoose test, if fail then will say user not found
+// User.findOne({ email: "john.doe@example.com" })
+//   .exec()
+//   .then((user) => {
+//     if (!user) {
+//       console.log("no user found");
+//       // User not found
+//       // return res.render('login', { message: 'Invalid email or password' });
+//     }
+//   });
 
 console.log("exporting user schema");
 module.exports = User;
