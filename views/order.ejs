@@ -112,8 +112,7 @@
     </nav>
 
     <div class="container mt-4">
-      <h2>Place Your Order</h2>
-      <!-- Display any messages or errors here -->
+      <h2>Place an Order</h2>
 
       <form action="/order/submit" method="POST">
           <!-- Pickup/Delivery option -->
@@ -140,30 +139,6 @@
               <!-- Add your new address input fields here -->
               <!-- Example: Street, City, State, etc. -->
           </div>
-
-    <div class="sidebar">
-      <h2>Menu Categories</h2>
-      <ul>
-        <li><a href="/menu">All Products</a></li>
-        <li><a href="/menu/foothies">Foothies</a></li>
-        <li><a href="/menu/smoothies">Smoothies</a></li>
-        <li><a href="/menu/sodas">Sodas</a></li>
-        <li><a href="/menu/juices">Juices</a></li>
-      </ul>
-    </div>
-
-    <div class="product-list">
-      <h1>Products</h1>
-      <ul>
-        <% products.forEach(product => { %>
-        <li>
-          <h3><%= product.name %></h3>
-          <p><%= product.description %></p>
-          <p>Price: $<%= product.price %></p>
-        </li>
-        <% }); %>
-      </ul>
-    </div>
 
     <div class="mb-3">
       <button type="submit" class="btn btn-primary">Add to Cart and Checkout</button>
