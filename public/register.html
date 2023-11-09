@@ -2,10 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Login</title>
@@ -28,15 +26,12 @@
   </head>
   <body style="background-color: #c3f6fc">
     <!-- Navbar -->
-    <nav
-      style="height: 150px"
-      class="navbar navbar-expand-lg navbar-light bg-light"
-    >
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
         <!-- Logo on the left (larger size) -->
-        <a href="index.html" class="navbar-brand">
+        <a href="/index.html" class="navbar-brand">
           <img
-            src="assets/FoothiesLogoTransparent.png"
+            src="/assets/FoothiesLogoTransparent.png"
             alt="Logo"
             width="180"
           />
@@ -54,9 +49,7 @@
         <div id="main-nav" class="collapse navbar-collapse">
           <ul class="navbar-nav mx-auto nav-tabs nav-justified">
             <li class="nav-item m-lg-4">
-              <a
-                href="index.html"
-                class="nav-link link-primary active fs-5 underline-on-hover"
+              <a href="/index.html" class="nav-link fs-5 underline-on-hover"
                 >Home</a
               >
             </li>
@@ -64,12 +57,12 @@
               <a href="/menu" class="nav-link fs-5 underline-on-hover">Menu</a>
             </li>
             <li class="nav-item m-lg-4">
-              <a href="contact.html" class="nav-link fs-5 underline-on-hover"
+              <a href="/contact.html" class="nav-link fs-5 underline-on-hover"
                 >Contact</a
               >
             </li>
             <li class="nav-item m-lg-4">
-              <a href="rewards.html" class="nav-link fs-5 underline-on-hover"
+              <a href="/rewards.html" class="nav-link fs-5 underline-on-hover"
                 >Rewards</a
               >
             </li>
@@ -101,7 +94,7 @@
                 >
               </li>
               <li>
-                <a class="dropdown-item" id="signupButton" href="register.html"
+                <a class="dropdown-item" id="signupButton" href="signup.html"
                   >Sign Up</a
                 >
               </li>
@@ -115,7 +108,7 @@
         class="row justify-content-center"
         style="
           background-color: white;
-          width: 45%;
+          width: 40vw;
           margin: auto;
           border-top-left-radius: 20px;
           border-top-right-radius: 20px;
@@ -137,57 +130,61 @@
       </div>
     </div>
     <!--Login Form-->
-    <form
-      action="/auth/register"
-      method="POST"
-      style="max-width: 480px; margin: auto"
-    >
-      <!-- <label class="form-label" for="email">Email:</label>
-      <input
-        class="form-control"
-        type="email"
-        id="email"
-        name="email"
-        required
-      />
-      <br /> -->
-      <label class="form-label" for="first_name">First Name:</label>
-      <input
-        class="form-control"
-        type="text"
-        id="first_name"
-        name="first_name"
-        required
-      />
-      <br />
-      <label class="form-label" for="last_name">Last Name:</label>
-      <input
-        class="form-control"
-        type="text"
-        id="last_name"
-        name="last_name"
-        required
-      />
-      <br />
-      <label class="form-label" for="email">Email:</label>
-      <input
-        class="form-control"
-        type="email"
-        id="email"
-        name="email"
-        required
-      />
-      <br />
-      <label class="form-label" for="password">Password:</label>
-      <input
-        class="form-control"
-        type="password"
-        id="password"
-        name="password"
-        required
-      />
-      <br />
-      <!-- <label class="form-label" for="re-password">Re-Enter Password:</label>
+    <div class="container position-relative">
+      <div
+        class="row justify-content-center"
+        style="
+          background-color: white;
+          width: 40vw;
+          margin: auto;
+          border-bottom-left-radius: 20px;
+          border-bottom-right-radius: 20px;
+        "
+      >
+        <div class="col-xl-6">
+          <div class="text-black">
+            <form
+              action="/auth/register"
+              method="POST"
+              style="max-width: 480px; margin: auto"
+            >
+              <label class="form-label" for="first_name">First Name:</label>
+              <input
+                class="form-control"
+                type="text"
+                id="first_name"
+                name="first_name"
+                required
+              />
+              <br />
+              <label class="form-label" for="last_name">Last Name:</label>
+              <input
+                class="form-control"
+                type="text"
+                id="last_name"
+                name="last_name"
+                required
+              />
+              <br />
+              <label class="form-label" for="email">Email:</label>
+              <input
+                class="form-control"
+                type="email"
+                id="email"
+                name="email"
+                required
+              />
+              <br />
+              <label class="form-label" for="password">Password:</label>
+              <input
+                class="form-control"
+                type="password"
+                id="password"
+                name="password"
+                required
+              />
+              <br />
+              <!-- <label class="form-label" for="re-password">Re-Enter Password:</label>
       <input
         class="form-control"
         type="password"
@@ -196,18 +193,29 @@
         required
       />
       <br /> -->
-      <label class="form-label" for="phone_number">Phone Number:</label>
-      <input
-        class="form-control"
-        type="text"
-        id="phone_number"
-        name="phone_number"
-        required
-      />
-      <br />
+              <label class="form-label" for="phone_number">Phone Number:</label>
+              <input
+                class="form-control"
+                type="text"
+                id="phone_number"
+                name="phone_number"
+                required
+              />
+              <br />
 
-      <button type="submit" class="btn btn-primary">Register</button>
-    </form>
+              <button type="submit" class="btn btn-primary">Register</button>
+              <br />
+              <br />
+              <br />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
     <!-- Bootstrap core JS-->
     <link rel="stylesheet" href="css/bootstrap.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
