@@ -43,6 +43,6 @@ const CardInfoSchema = new Schema({
   },
 });
 
-const Address = mongoose.model("address", UserSchema);
+const Card = mongoose.model("card", CardInfoSchema);
 
-module.exports = Address;
+module.exports = Card;

@@ -14,7 +14,7 @@ mongoose
 //schema for the user login
 //UserId, firstName, lastName, email, password, phoneNumber
 const ProductSchema = new Schema({
-  product_id: {
+  id: {
     type: Number,
     required: true,
     unique: true,
