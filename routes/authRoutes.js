@@ -27,18 +27,22 @@ router.post('/login', (req, res) => {
             // compare password with hashed password from bcrypt
             bcrypt.compare(password, user.password, (compareErr, isMatch) => {
                 if (compareErr || !isMatch) {
-                    console.log(user.password);
-                    console.log(password);
                    // return res.render('login', { message: 'Invalid email or password' });
                    console.log('password not matched');
                    res.sendFile(path.join(__dirname, '../public', 'login.html'));
                 }
+                req.session.user = {
+                    _id: user._id,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    email: user.email
+                  };
                 console.log('login successful');
                 res.sendFile(path.join(__dirname, '../public', 'dashboard.html'));
             });
         })
         .catch(err => {
-            console.log('error');
+            console.log(err);
         });
 });
 
@@ -92,6 +96,12 @@ router.post('/register', (req, res) => {
         newUser.save()
         .then(() => {
             console.log('Registration successful');
+            req.session.user = {
+                _id: newUser._id,
+                first_name,
+                last_name,
+                email
+            };
             res.sendFile(path.join(__dirname, '../public', 'dashboard.html'));
         })
         .catch(saveError => {

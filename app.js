@@ -3,6 +3,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const User = require('./models/user');
 const app = express();
 
 //view engine for ejs and view directory
@@ -18,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Session management ???
 app.use(session({
-  secret: 'your_secret_key',
+  secret: 'secret key',
   resave: false,
   saveUninitialized: false,
 }));
@@ -32,7 +33,7 @@ const orderRoutes = require('./routes/order');
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/menu', menuRoutes);
-app.use('/order', menuRoutes);
+app.use('/order', orderRoutes);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
