@@ -13,11 +13,10 @@ const Product = require("../models/product");
 router.get("/:productName", (req, res) => {
   //res.sendFile(path.join(__dirname, '../public', 'menu.html'));
   //res.render('menu.html');
-  //const productName = "x" + req.params.productName + "x";
-  const name = "Cherry Coke";
+  const name = req.params.productName;
   const query = name ? { name: name } : {};
   console.log("productName:", name);
-  Product.find({ query })
+  Product.find( query )
     .then((products) => {
       console.log(products);
       res.render("product", { products });
