@@ -1,20 +1,22 @@
-const express = require('express');
-const path = require('path');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const session = require('express-session');
-const User = require('./models/user');
+const express = require("express");
+const path = require("path");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const session = require("express-session");
+const User = require("./models/user");
 const app = express();
 
 // Serve static files from the "public" directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Session management
-app.use(session({
-  secret: 'secret key',
-  resave: false,
-  saveUninitialized: false,
-}));
+app.use(
+  session({
+    secret: "secret key",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 // add user to locals
 const addUserDataToLocals = (req, res, next) => {
@@ -24,59 +26,40 @@ const addUserDataToLocals = (req, res, next) => {
 };
 app.use(addUserDataToLocals);
 
-
 //view engine for ejs and view directory
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
 // Serve static files from the "public" directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => {
-    //res.send('Welcome to the homepage');
-    res.render('index', { user: res.locals.user });
+app.get("/", (req, res) => {
+  //res.send('Welcome to the homepage');
+  res.render("index", { user: res.locals.user });
 });
 
 // Routes
-const authRoutes = require('./routes/authRoutes');
-const userRoutes = require('./routes/user');
-const menuRoutes = require('./routes/menu');
-const orderRoutes = require('./routes/order');
+const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/user");
+const menuRoutes = require("./routes/menu");
+const orderRoutes = require("./routes/order");
+const productRoutes = require("./routes/product");
 
-app.use('/auth', authRoutes);
-app.use('/user', userRoutes);
-app.use('/menu', menuRoutes);
-app.use('/order', orderRoutes);
+app.use("/auth", authRoutes);
+app.use("/user", userRoutes);
+app.use("/menu", menuRoutes);
+app.use("/order", orderRoutes);
+app.use("/product", productRoutes);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
   console.log("Running on this URL: http://localhost:3000/");
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // var express=require('express');
 // var path=require('path');
@@ -100,12 +83,11 @@ app.listen(port, () => {
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: false }));
 
-
 // // //Get Page Model
 // // var Schema=require('./models/page');
 // // var Page= mongoose.model("Pages",Schema);
 
-// //get category model                
+// //get category model
 // var Schema1=require('./models/user');
 // var Category= mongoose.model("user",Schema1);
 
@@ -161,7 +143,7 @@ app.listen(port, () => {
 //   passport.serializeUser((user, done) => {
 //     done(null, user._id);
 //   });
-  
+
 //   passport.deserializeUser((id, done) => {
 //     User.findById(id, (err, user) => {
 //       done(err, user);
