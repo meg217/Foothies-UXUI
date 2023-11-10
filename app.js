@@ -9,7 +9,7 @@ const app = express();
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Session management ???
+// Session management
 app.use(session({
   secret: 'secret key',
   resave: false,
@@ -18,7 +18,7 @@ app.use(session({
 
 // add user to locals
 const addUserDataToLocals = (req, res, next) => {
-  console.log('Session:', req.session);
+  //console.log('Session:', req.session);
   res.locals.user = req.session.user || null;
   next();
 };
