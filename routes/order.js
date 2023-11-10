@@ -19,8 +19,14 @@ router.get('/', (req, res) => {
     const userId = req.session.user._id; 
     User.findById(userId)
       .then(user => {
-        // Render the order page with the saved address
-        res.render('order', { savedAddress: user.address });
+        // check if adress is null for the neew address section
+        const showNewAddressInput = user.address === null;
+
+        if (user.address !== null) {
+          res.render('order', { savedAddress: user.address, showNewAddressInput });
+        } else {
+          res.render('order', { showNewAddressInput });
+        }
       })
       .catch(err => {
         console.error(err);
@@ -66,8 +72,7 @@ router.get('/', (req, res) => {
   
   // Function to calculate the total amount of the order
   function calculateTotalAmount(cart) {
-    // Implement your logic to calculate the total amount based on the items in the cart
-    // For example, you can iterate over the items in the cart and sum up the prices
+    //make function to iterate over cart items and add total
   }
   
   module.exports = router;
