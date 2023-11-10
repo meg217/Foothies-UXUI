@@ -24,6 +24,11 @@ app.use(session({
   saveUninitialized: false,
 }));
 
+app.get('/index', (req, res) => {
+    //res.send('Welcome to the homepage');
+    res.render('index');
+});
+
 // Routes
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/user');

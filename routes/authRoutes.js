@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 
 
 router.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'login.html'));
+    res.render('login');
 });
 
 router.post('/login', (req, res) => {
@@ -22,7 +22,7 @@ router.post('/login', (req, res) => {
             if (!user) {
                console.log('no user found');
                 // User not found
-               return res.sendFile(path.join(__dirname, '../public', 'login.html'));
+               return res.render('login');
             }
             // compare password with hashed password from bcrypt
             bcrypt.compare(password, user.password, (compareErr, isMatch) => {
@@ -110,6 +110,17 @@ router.post('/register', (req, res) => {
         });
     });
 });
+
+
+router.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        console.error('Error destroying session:', err);
+        return res.redirect('/');
+      }
+      res.redirect('/');
+    });
+  });
 
 
 

@@ -14,10 +14,12 @@ const isAuthenticated = (req, res, next) => {
 
 router.get('/profile', isAuthenticated, (req, res) => {
   // Render the user's profile, retrieve user data, and serve appropriate pages
+  res.render('profile', { user: req.session.user });
 });
 
 router.get('/settings', isAuthenticated, (req, res) => {
   // Render user settings
+  res.render('settings', { user: req.session.user });
 });
 
 module.exports = router;
