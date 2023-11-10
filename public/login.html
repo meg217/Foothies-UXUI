@@ -42,7 +42,7 @@
           <img
             src="/assets/FoothiesLogoTransparent.png"
             alt="Logo"
-            width="180"
+            style="width: calc(180px + 1vmin)"
           />
         </a>
 
@@ -56,14 +56,16 @@
         </button>
 
         <div id="main-nav" class="collapse navbar-collapse">
-          <ul class="navbar-nav mx-auto nav-tabs nav-justified">
+          <ul class="navbar-nav mx-auto nav-justified">
             <li class="nav-item m-lg-4">
-              <a href="/" class="nav-link fs-5 underline-on-hover"
-                >Home</a
-              >
+              <a href="/" class="nav-link fs-5 underline-on-hover">Home</a>
             </li>
             <li class="nav-item m-lg-4">
-              <a href="/menu" class="nav-link fs-5 underline-on-hover">Menu</a>
+              <a
+                href="/menu"
+                class="nav-link link-primary active fs-5 underline-on-hover"
+                >Menu</a
+              >
             </li>
             <li class="nav-item m-lg-4">
               <a href="/contact.html" class="nav-link fs-5 underline-on-hover"
@@ -98,12 +100,12 @@
               aria-labelledby="profileDropdown"
             >
               <li>
-                <a class="dropdown-item" id="loginButton" href="login.html"
+                <a class="dropdown-item" id="loginButton" href="/login.html"
                   >Login</a
                 >
               </li>
               <li>
-                <a class="dropdown-item" id="signupButton" href="register.html"
+                <a class="dropdown-item" id="signupButton" href="/register.html"
                   >Sign Up</a
                 >
               </li>

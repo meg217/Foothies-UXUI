@@ -37,7 +37,8 @@
           <img
             src="/assets/FoothiesLogoTransparent.png"
             alt="Logo"
-            width="180"
+            style="
+         width: calc(180px + 1vmin)"
           />
         </a>
 
@@ -51,7 +52,7 @@
         </button>
 
         <div id="main-nav" class="collapse navbar-collapse">
-          <ul class="navbar-nav mx-auto nav-tabs nav-justified">
+          <ul class="navbar-nav mx-auto nav-justified">
             <li class="nav-item m-lg-4">
               <a
                 href="/"
@@ -120,27 +121,27 @@
   <hr>
   <ul class="nav nav-pills pagination flex-column mb-auto">
     <li class="nav-item">
-      <a href="/menu" class="nav-link text-white">
+      <a href="/menu" class="fs-5 underline-on-hover nav-link text-white">
         All Products
       </a>
     </li>
     <li class="nav-item">
-      <a href="/menu/foothies" class="nav-link text-white">
+      <a href="/menu/foothies" class="fs-5 underline-on-hover nav-link text-white">
         Foothies
       </a>
     </li>
     <li class="nav-item">
-      <a href="/menu/smoothies" class="nav-link text-white">
+      <a href="/menu/smoothies" class="fs-5 underline-on-hover nav-link text-white">
         Smoothies
       </a>
     </li>
     <li class="nav-item">
-      <a href="/menu/sodas" class="nav-link text-white">
+      <a href="/menu/sodas" class="fs-5 underline-on-hover nav-link text-white">
         Sodas
       </a>
     </li>
     <li class="nav-item">
-      <a href="/menu/juices" class="nav-link text-white">
+      <a href="/menu/juices" class="fs-5 underline-on-hover nav-link text-white">
         Juices
       </a>
     </li>
@@ -166,7 +167,7 @@
       <div class="container">
         <div class="row">
           <% products.forEach(product => { %>
-          <div style="cursor: pointer" class="col-md-4">
+            <a href="index.ejs" style="cursor: pointer; text-decoration: none" class="col-md-4">
             <div style="border: 0px" onpointerenter="this.setAttribute('style', 'transition: all 1s ease; border: 1.5px solid black; color: black; background: #d4faff')" onpointerleave="this.setAttribute('style', 'border: 0px; color: black; background: white')"  class="card mb-2">
               <img
                 src="https://purepng.com/public/uploads/thumbnail//purepng.com-smoothie-fruit-strawberrysmoothiefruitstrawberryjuicejuicyfoodfreshredglas-481521377060qmp83.png"
@@ -185,7 +186,7 @@
           <!-- </form> -->
           </div>
         </div>
-      </div>
+    </a>
         <% }); %> 
       </div>
         </div>
