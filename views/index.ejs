@@ -90,7 +90,7 @@
            aria-expanded="false"
          >
          <% if (user) { %>
-          <%= user.first_name[0].toUpperCase() %>
+          <%= user.first_name[0].toUpperCase()+user.last_name[0].toUpperCase() %>
         <% } else { %>
           <i class="bi bi-person fs-2"></i>
         <% } %>
