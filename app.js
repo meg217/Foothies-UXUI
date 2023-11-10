@@ -6,6 +6,25 @@ const session = require('express-session');
 const User = require('./models/user');
 const app = express();
 
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Session management ???
+app.use(session({
+  secret: 'secret key',
+  resave: false,
+  saveUninitialized: false,
+}));
+
+// add user to locals
+const addUserDataToLocals = (req, res, next) => {
+  console.log('Session:', req.session);
+  res.locals.user = req.session.user || null;
+  next();
+};
+app.use(addUserDataToLocals);
+
+
 //view engine for ejs and view directory
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -17,16 +36,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Session management ???
-app.use(session({
-  secret: 'secret key',
-  resave: false,
-  saveUninitialized: false,
-}));
-
-app.get('/index', (req, res) => {
+app.get('/', (req, res) => {
     //res.send('Welcome to the homepage');
-    res.render('index');
+    res.render('index', { user: res.locals.user });
 });
 
 // Routes

@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 
 
 router.get('/login', (req, res) => {
-    res.render('login');
+    return res.redirect('/login.html');
 });
 
 router.post('/login', (req, res) => {
@@ -22,14 +22,14 @@ router.post('/login', (req, res) => {
             if (!user) {
                console.log('no user found');
                 // User not found
-               return res.render('login');
+                return res.redirect('/login.html');
             }
             // compare password with hashed password from bcrypt
             bcrypt.compare(password, user.password, (compareErr, isMatch) => {
                 if (compareErr || !isMatch) {
                    // return res.render('login', { message: 'Invalid email or password' });
                    console.log('password not matched');
-                   res.sendFile(path.join(__dirname, '../public', 'login.html'));
+                   return res.redirect('/login.html');
                 }
                 req.session.user = {
                     _id: user._id,
@@ -38,7 +38,7 @@ router.post('/login', (req, res) => {
                     email: user.email
                   };
                 console.log('login successful');
-                res.sendFile(path.join(__dirname, '../public', 'dashboard.html'));
+                res.redirect('/');
             });
         })
         .catch(err => {
@@ -53,7 +53,7 @@ router.post('/login', (req, res) => {
 // }));
 
 router.get('/register', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'register.html'));
+    return res.redirect('/register.html');
 });
 
 router.post('/register', (req, res) => {
@@ -65,7 +65,8 @@ router.post('/register', (req, res) => {
         .then(existingUser =>{
             if (existingUser) {
                 console.log('user already exists');
-                return res.sendFile(path.join(__dirname, '../public', 'register.html'));
+                //return res.sendFile(path.join(__dirname, '../public', 'register.html'));
+                return res.redirect('/register.html');
             }
         });
 
@@ -73,7 +74,7 @@ router.post('/register', (req, res) => {
     bcrypt.hash(password, 10, (err, hash) => {
         if (err) {
             console.log('error setting up password');
-            return res.sendFile(path.join(__dirname, '../public', 'register.html'));
+            return res.redirect('/register.html');
         }
 
         // Create a new User and save to db
@@ -102,11 +103,11 @@ router.post('/register', (req, res) => {
                 last_name,
                 email
             };
-            res.sendFile(path.join(__dirname, '../public', 'dashboard.html'));
+            res.redirect('/');
         })
         .catch(saveError => {
             console.log('error saving user',saveError);
-            res.sendFile(path.join(__dirname, '../public', 'register.html'));
+            return res.redirect('/register.html');
         });
     });
 });
