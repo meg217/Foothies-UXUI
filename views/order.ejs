@@ -131,12 +131,15 @@
     </div>
 
     <!-- Saved address (displayed if the user has a saved address) -->
-    <% if (savedAddress) { %>
-      <div class="mb-3">
-        <label class="form-label">Saved Address:</label>
+  
+    <div class="mb-3" id="savedAddress">
+      <label class="form-label">Saved Address:</label>
+      <% if (savedAddress.street1 == null) { %>
+        <p>No address on record, please enter a new address</p>
+      <% } else { %>
         <p><%= savedAddress.street1 %>, <%= savedAddress.city %>, <%= savedAddress.state %></p>
-    <% } %>
-  </div>
+      <% } %>
+    </div>
 
     <!-- New address input (displayed if the user chooses "Delivery - Enter New Address") -->
     <div class="mb-3" id="newAddress" style="display: none;">
