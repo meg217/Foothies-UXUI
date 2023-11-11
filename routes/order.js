@@ -4,6 +4,8 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const Product = require('../models/product');
+const Cart = require('../models/carts');
+const Order = require('../models/orders'); 
 const mongoose = require('mongoose');
 const User = require('../models/user');
 

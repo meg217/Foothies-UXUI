@@ -88,7 +88,8 @@ router.post('/register', (req, res) => {
                 country: null,
                 city: null,
                 state: null,
-                street1: null
+                street1: null,
+                zip:null
             }
         });
 

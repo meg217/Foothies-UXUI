@@ -154,9 +154,15 @@
     
       <label for="postalCode" class="form-label">Postal Code:</label>
       <input type="text" id="postalCode" name="deliveryAddress.postalCode" class="form-control">
+      
+      <label for="saveAddress" class="form-check-label">
+        <input type="checkbox" id="saveAddress" name="saveAddress" class="form-check-input">
+        Save this address for future orders
+      </label>
+      
     </div>
 
-    <input type="hidden" name="showNewAddressInput" id="showNewAddressInput" value="<%= showNewAddressInput %>">
+    <!-- <input type="hidden" name="showNewAddressInput" id="showNewAddressInput" value="<%= showNewAddressInput %>"> -->
 
     <div class="mb-3">
       <button type="submit" class="btn btn-primary">Continue</button>
@@ -173,5 +179,4 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="/js/order.js"></script>
   </body>
-  </body>s
 </html>
