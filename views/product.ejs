@@ -109,17 +109,25 @@
     </nav>
     <!--Product-->
 
-    <!-- to-do: add the picture and remormat the style to be big and add
+    <!-- to-do: add the picture and re format the style to be big and add
     the longer description, product info such as calories, ingredients, etc, then allow
     for user to add to cart and when add change the button color and to a check mark to indicate
     added to cart, add it to the users cart in the post method, and then allow for user
     to return to menu or checkout, return to menu button available at all times, but checkout button 
     available only after the user presses add to cart(use javascript to do this) -->
-    <div style="margin-left: auto; margin-right: auto; text-align: center" class="card-body">
+    <div style="margin-top: 30px">
       <% products.forEach(product => { %>
-        <h5 class="card-title"><%= product.name %></h5>
-        <p class="card-text"><%= product.description %></p>
-        <p class="card-text">Price: $<%= product.price %></p>
+      <div>
+        <img
+          style="margin-left: 40px; float: left; width: 500px; height: 500px"
+          src="/assets/logo.png"
+        />
+      </div>
+      <div style="padding-left: 700px">
+        <h5 style="font-size: 60px" class="card-title"><%= product.name %></h5>
+        <p style="font-size: 50px" class="card-text">$<%= product.price %></p>
+        <p class="card-text"><%= product.long_description %></p>
+      </div>
       <% }) %>
     </div>
   </body>
