@@ -85,10 +85,9 @@ router.post('/register', (req, res) => {
             password: hash,
             phone_number,
             address: {
-                country: null,
                 city: null,
                 state: null,
-                street1: null,
+                street: null,
                 zip:null
             }
         });

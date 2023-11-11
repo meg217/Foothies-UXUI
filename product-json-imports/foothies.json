@@ -1,0 +1,93 @@
+[
+    {
+      "category": "foothies",
+      "name": "Double Cheeseburger",
+      "price": "5.99",
+      "description": "Savory beefy delight",
+      "long_description": "A unique fusion of beefy goodness, double cheese, and secret sauce blended into a satisfying sip of savory indulgence.",
+      "calories": 450,
+      "ingredients": ["Beef", "cheese", "secret sauce", "ice"]
+    },
+    {
+      "category": "foothies",
+      "name": "Mac and Cheesy",
+      "price": "4.99",
+      "description": "Creamy comfort fusion",
+      "long_description": "Immerse yourself in the comforting blend of macaroni, creamy cheese, and a touch of indulgence for a cozy beverage experience.",
+      "calories": 380,
+      "ingredients": ["Macaroni", "cheese", "milk", "ice"]
+    },
+    {
+      "category": "foothies",
+      "name": "Chicken Alfredo",
+      "price": "6.49",
+      "description": "Creamy chicken elegance",
+      "long_description": "Experience a touch of luxury with our Chicken Alfredo Foothie, blending grilled chicken, alfredo sauce, and Italian herbs for a delightful indulgence.",
+      "calories": 420,
+      "ingredients": ["Grilled chicken", "alfredo sauce", "Italian herbs", "ice"]
+    },
+    {
+      "category": "foothies",
+      "name": "Spaghetti Meatball",
+      "price": "5.99",
+      "description": "Italian comfort in a sip",
+      "long_description": "Savor the essence of spaghetti and meatballs in a unique, drinkable twist for a comforting and unexpected flavor experience.",
+      "calories": 400,
+      "ingredients": ["Spaghetti", "meatballs", "tomato sauce", "ice"]
+    },
+    {
+      "category": "foothies",
+      "name": "Taco Madness",
+      "price": "6.99",
+      "description": "Spicy fiesta fusion",
+      "long_description": "A fiesta of flavors featuring seasoned taco meat, salsa, and a touch of lime in every sip. Taco Madness is a spicy, bold adventure.",
+      "calories": 380,
+      "ingredients": ["Taco meat", "salsa", "lime", "ice"]
+    },
+    {
+      "category": "foothies",
+      "name": "Bean Machine",
+      "price": "4.49",
+      "description": "Hearty bean concoction",
+      "long_description": "The Bean Machine delivers a hearty blend of beans, spices, and a dash of smokiness for a unique and satisfying beverage.",
+      "calories": 320,
+      "ingredients": ["Beans", "spices", "smoke flavor", "ice"]
+    },
+    {
+      "category": "foothies",
+      "name": "Loaded Nacho",
+      "price": "5.29",
+      "description": "Nacho cheese sensation",
+      "long_description": "Dive into the bold flavor of Loaded Nacho Foothie, complete with cheese, jalapeños, and a hint of salsa for a party in every sip.",
+      "calories": 380,
+      "ingredients": ["Nacho cheese", "jalapeños", "salsa", "ice"]
+    },
+    {
+      "category": "foothies",
+      "name": "Mushy Sushi",
+      "price": "7.99",
+      "description": "Sushi in a sip",
+      "long_description": "Experience the umami of sushi with a blend of sushi rice, fresh fish, and savory soy undertones in every Mushy Sushi Foothie.",
+      "calories": 350,
+      "ingredients": ["Sushi rice", "fish", "soy sauce", "ice"]
+    },
+    {
+      "category": "foothies",
+      "name": "Pepperoni Pizza",
+      "price": "6.49",
+      "description": "Pizza in liquid form",
+      "long_description": "A liquid tribute to the classic pepperoni pizza, blending savory cheese, pepperoni, and tomato essence for a unique and bold flavor.",
+      "calories": 420,
+      "ingredients": ["Pepperoni", "cheese", "tomato", "ice"]
+    },
+    {
+      "category": "foothies",
+      "name": "Gyro Blend",
+      "price": "7.99",
+      "description": "Mediterranean savory delight",
+      "long_description": "Transport your taste buds with the savory goodness of Gyro Blend, featuring gyro meat, tzatziki, and Mediterranean spices in every sip.",
+      "calories": 420,
+      "ingredients": ["Gyro meat", "tzatziki", "Mediterranean spices", "ice"]
+    }
+  ]
+  

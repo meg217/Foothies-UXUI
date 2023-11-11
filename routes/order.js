@@ -38,10 +38,36 @@ router.get('/', (req, res) => {
   
   // Handle the delivery or pickup option submission
   router.post('/options', (req, res) => {
-    const { deliveryOption } = req.body;
+    const { deliveryOption, saveAddress, street, city, state, zip } = req.body;
     req.session.deliveryOption = deliveryOption;
+    //req.session.deliveryAddress = { street, city, state, zip };
+    console.log('delivery option:', req.session.deliveryOption);
+
+    const shouldSaveAddress = saveAddress === 'save';
+
+    //check for the save adress check box
+    if (shouldSaveAddress && deliveryOption === 'new') {
+      const newAddress = {
+        city,
+        state,
+        street,
+        zip,
+      };
+
+      // Save the user's address to the database
+      User.findByIdAndUpdate(req.session.user._id, { address: newAddress }, { new: true })
+        .then(updatedUser => {
+          // User's address updated successfully
+          console.log('User address updated:', updatedUser.address);
+          res.redirect('/menu');
+        })
+        .catch(err => {
+          console.error('Error updating user address:', err);
+        });
+    } else {
     // Redirect to the menu page to browse products
     res.redirect('/menu');
+    }
   });
   
   // Handle the order form submission
@@ -52,7 +78,7 @@ router.get('/', (req, res) => {
     const newOrder = new Order({
       user: req.session.user._id,
       deliveryOption: req.session.deliveryOption,
-      deliveryAddress: req.session.deliveryOption === 'saved' ? req.session.user.address : deliveryAddress,
+      deliveryAddress: req.session.deliveryAddress,
       items: req.session.cart, 
       totalAmount: calculateTotalAmount(req.session.cart), 
     });
