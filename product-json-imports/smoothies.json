@@ -1,0 +1,93 @@
+[
+    {
+      "category": "smoothies",
+      "name": "Pink Grapefruit Slime",
+      "price": "4.49",
+      "description": "Citrusy delight",
+      "long_description": "Dive into the refreshing and zesty world of our Pink Grapefruit Slime, a citrusy blend of pink grapefruit, ice, and a hint of sweetness.",
+      "calories": 120,
+      "ingredients": ["Pink grapefruit", "ice", "sugar"]
+    },
+    {
+      "category": "smoothies",
+      "name": "Banana Smoothie",
+      "price": "3.99",
+      "description": "Creamy banana goodness",
+      "long_description": "Indulge in the creamy bliss of our Banana Smoothie, a luscious blend of ripe bananas, yogurt, and a touch of honey.",
+      "calories": 150,
+      "ingredients": ["Banana", "yogurt", "honey", "ice"]
+    },
+    {
+      "category": "smoothies",
+      "name": "Mango Smoothie",
+      "price": "4.29",
+      "description": "Tropical delight",
+      "long_description": "Transport yourself to the tropics with our Mango Smoothie, a delightful fusion of ripe mangoes, coconut milk, and a hint of pineapple.",
+      "calories": 180,
+      "ingredients": ["Mango", "coconut milk", "pineapple", "ice"]
+    },
+    {
+      "category": "smoothies",
+      "name": "Peach Smoothie",
+      "price": "3.79",
+      "description": "Sweet peach perfection",
+      "long_description": "Savor the sweetness of succulent peaches in our Peach Smoothie, a perfectly blended and refreshing treat for any occasion.",
+      "calories": 130,
+      "ingredients": ["Peach", "yogurt", "orange juice", "ice"]
+    },
+    {
+      "category": "smoothies",
+      "name": "Strawberry Smoothie",
+      "price": "4.19",
+      "description": "Berry bliss",
+      "long_description": "Experience bliss with our Strawberry Smoothie, a delightful mix of fresh strawberries, yogurt, and a hint of honey in every sip.",
+      "calories": 160,
+      "ingredients": ["Strawberry", "yogurt", "honey", "ice"]
+    },
+    {
+      "category": "smoothies",
+      "name": "Milky Blueberry",
+      "price": "4.99",
+      "description": "Creamy berry indulgence",
+      "long_description": "Indulge in the velvety richness of our Milky Blueberry, a creamy blend of blueberries, milk, and a touch of sweetness.",
+      "calories": 200,
+      "ingredients": ["Blueberries", "milk", "sugar"]
+    },
+    {
+      "category": "smoothies",
+      "name": "Pineapple Delight",
+      "price": "4.59",
+      "description": "Pineapple bliss",
+      "long_description": "Delight your senses with our Pineapple Delight, a taste of the tropics featuring the sweet and tangy flavor of fresh pineapple.",
+      "calories": 170,
+      "ingredients": ["Pineapple", "coconut water", "lime", "ice"]
+    },
+    {
+      "category": "smoothies",
+      "name": "Strawberry Banana",
+      "price": "4.29",
+      "description": "Classic duo",
+      "long_description": "Enjoy a classic duo with our Strawberry Banana, a timeless blend of ripe strawberries, bananas, yogurt, and a touch of sweetness.",
+      "calories": 180,
+      "ingredients": ["Strawberry", "banana", "yogurt", "ice"]
+    },
+    {
+      "category": "smoothies",
+      "name": "Very Berry",
+      "price": "5.29",
+      "description": "Berry explosion",
+      "long_description": "Immerse yourself in the burst of flavors with our Very Berry, an explosion of mixed berries creating a symphony of sweet and tart notes.",
+      "calories": 220,
+      "ingredients": ["Mixed berries", "ice", "sugar"]
+    },
+    {
+      "category": "smoothies",
+      "name": "Orange Burst",
+      "price": "4.39",
+      "description": "Citrus explosion",
+      "long_description": "Experience a burst of citrus with our Orange Burst, the perfect blend of oranges for a refreshing and zesty delight in every sip.",
+      "calories": 150,
+      "ingredients": ["Orange", "yogurt", "honey", "ice"]
+    }
+  ]
+  

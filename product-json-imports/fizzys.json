@@ -1,0 +1,93 @@
+[
+    {
+      "category": "fizzys",
+      "name": "Cherry Soda",
+      "price": "1.99",
+      "description": "Bold cherry refreshment",
+      "long_description": "Indulge in the bold and sweet refreshment of Cherry Soda, a classic fizzy drink bursting with the flavor of ripe cherries.",
+      "calories": 150,
+      "ingredients": ["Carbonated water", "high fructose corn syrup", "cherry flavor"]
+    },
+    {
+      "category": "fizzys",
+      "name": "Coca Cola",
+      "price": "1.79",
+      "description": "Classic cola experience",
+      "long_description": "Enjoy the timeless taste of Coca Cola, a refreshing and effervescent cola experience that never goes out of style.",
+      "calories": 140,
+      "ingredients": ["Carbonated water", "high fructose corn syrup", "caramel color"]
+    },
+    {
+      "category": "fizzys",
+      "name": "Mtn Dew",
+      "price": "2.29",
+      "description": "Citrusy mountain blend",
+      "long_description": "Quench your thirst with the bold and citrusy Mountain Dew, a fizzy delight that takes your taste buds on an exhilarating journey.",
+      "calories": 170,
+      "ingredients": ["Carbonated water", "high fructose corn syrup", "citrus flavor"]
+    },
+    {
+      "category": "fizzys",
+      "name": "Sprite",
+      "price": "1.99",
+      "description": "Crisp lemon-lime fizz",
+      "long_description": "Experience the crisp and refreshing taste of Sprite, a lemon-lime fizzy drink that brings a burst of joy with every sip.",
+      "calories": 130,
+      "ingredients": ["Carbonated water", "high fructose corn syrup", "lemon-lime flavor"]
+    },
+    {
+      "category": "fizzys",
+      "name": "Dr. Pepper",
+      "price": "2.49",
+      "description": "Unique peppered blend",
+      "long_description": "Savor the distinct flavor of Dr. Pepper, a unique blend of 23 flavors that creates a bold and satisfying fizzy beverage.",
+      "calories": 150,
+      "ingredients": ["Carbonated water", "high fructose corn syrup", "flavors"]
+    },
+    {
+      "category": "fizzys",
+      "name": "Big Red",
+      "price": "2.09",
+      "description": "Sweet cream soda",
+      "long_description": "Enjoy the sweet and creamy delight of Big Red, a classic cream soda that brings a nostalgic and satisfying fizzy experience.",
+      "calories": 160,
+      "ingredients": ["Carbonated water", "high fructose corn syrup", "vanilla flavor"]
+    },
+    {
+      "category": "fizzys",
+      "name": "Orange Fanta",
+      "price": "1.89",
+      "description": "Citrusy orange burst",
+      "long_description": "Delight in the burst of citrus with Orange Fanta, a fizzy orange-flavored drink that brings a refreshing and zesty experience.",
+      "calories": 140,
+      "ingredients": ["Carbonated water", "high fructose corn syrup", "orange flavor"]
+    },
+    {
+      "category": "fizzys",
+      "name": "A&W Rootbeer",
+      "price": "2.19",
+      "description": "Rich root beer goodness",
+      "long_description": "Dive into the rich and frothy goodness of A&W Rootbeer, a classic fizzy drink with the nostalgic flavor of root beer.",
+      "calories": 180,
+      "ingredients": ["Carbonated water", "high fructose corn syrup", "root beer flavor"]
+    },
+    {
+      "category": "fizzys",
+      "name": "Pepsi",
+      "price": "1.79",
+      "description": "Classic cola favorite",
+      "long_description": "Enjoy the classic taste of Pepsi, a fizzy cola favorite that delivers a perfect balance of sweetness and refreshment.",
+      "calories": 150,
+      "ingredients": ["Carbonated water", "high fructose corn syrup", "caramel color"]
+    },
+    {
+      "category": "fizzys",
+      "name": "Canada Dry",
+      "price": "1.99",
+      "description": "Crisp ginger ale",
+      "long_description": "Experience the crisp and refreshing taste of Canada Dry, a classic ginger ale that brings a delightful fizz and a hint of ginger warmth.",
+      "calories": 140,
+      "ingredients": ["Carbonated water", "high fructose corn syrup", "ginger flavor"]
+    }
+  ]
+  

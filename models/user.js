@@ -47,10 +47,10 @@ const UserSchema = new Schema({
     type: String
   },
   address: {
-    country: String,
     city: String,
     state: String,
-    street1: String,
+    street: String,
+    zip: String
   },
 });
 

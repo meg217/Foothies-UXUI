@@ -134,29 +134,29 @@
   
     <div class="mb-3" id="savedAddress">
       <label class="form-label">Saved Address:</label>
-      <% if (savedAddress.street1 == null) { %>
+      <% if (savedAddress.street == null) { %>
         <p>No address on record, please enter a new address</p>
       <% } else { %>
-        <p><%= savedAddress.street1 %>, <%= savedAddress.city %>, <%= savedAddress.state %></p>
+        <p><%= savedAddress.street %>, <%= savedAddress.city %>, <%= savedAddress.state %></p>
       <% } %>
     </div>
 
     <!-- New address input (displayed if the user chooses "Delivery - Enter New Address") -->
     <div class="mb-3" id="newAddress" style="display: none;">
       <label for="street" class="form-label">Street:</label>
-      <input type="text" id="street" name="deliveryAddress.street1" class="form-control">
+      <input type="text" id="street" name="street" class="form-control">
     
       <label for="city" class="form-label">City:</label>
-      <input type="text" id="city" name="deliveryAddress.city" class="form-control">
+      <input type="text" id="city" name="city" class="form-control">
     
       <label for="state" class="form-label">State:</label>
-      <input type="text" id="state" name="deliveryAddress.state" class="form-control">
+      <input type="text" id="state" name="state" class="form-control">
     
       <label for="postalCode" class="form-label">Postal Code:</label>
-      <input type="text" id="postalCode" name="deliveryAddress.postalCode" class="form-control">
+      <input type="text" id="postalCode" name="zip" class="form-control">
       
       <label for="saveAddress" class="form-check-label">
-        <input type="checkbox" id="saveAddress" name="saveAddress" class="form-check-input">
+        <input type="checkbox" id="saveAddress" name="saveAddress" class="form-check-input" value="save">
         Save this address for future orders
       </label>
       
