@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const User = require("./models/user");
 const app = express();
+const uuid = require('uuid');
 
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, "public")));
