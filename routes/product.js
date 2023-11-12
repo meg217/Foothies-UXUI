@@ -16,7 +16,7 @@ router.get("/:productName", (req, res) => {
   const name = req.params.productName;
   const query = name ? { name: name } : {};
   console.log("productName:", name);
-  Product.find( query )
+  Product.find(query)
     .then((products) => {
       console.log(products);
       res.render("product", { products });

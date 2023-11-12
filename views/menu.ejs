@@ -14,7 +14,8 @@
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="css/add_to_cart.css" />
+  <link rel="stylesheet" href="/css/add_to_cart.css" type="text/css" />
+  <!--END Add to cart links-->
 
     <link rel="icon" type="image" href="assets/logo.png" />
     <!-- Bootstrap icons-->
@@ -174,7 +175,8 @@
             <a href="/product/<%= product.name %>" style="cursor: pointer; text-decoration: none" class="col-md-4">
             <div style="border: 0px" onpointerenter="this.setAttribute('style', 'transition: all 1s ease; border: 1.5px solid black; color: black; background: #d4faff')" onpointerleave="this.setAttribute('style', 'border: 0px; color: black; background: white')"  class="card mb-2">
               <img
-                src="https://purepng.com/public/uploads/thumbnail//purepng.com-smoothie-fruit-strawberrysmoothiefruitstrawberryjuicejuicyfoodfreshredglas-481521377060qmp83.png"
+                style="margin:auto; width:150px; height:270px"
+                src="<%= product.image%>"
                 class="card-img-top"
                 alt="Product Image"
                 
@@ -188,6 +190,8 @@
               <input type="hidden" name="product_id" value="{{ product[0] }}"> -->
              <!--<button style="background: rgb(0, 0, 0)" type="submit" class="btn btn-success">Add to Cart</button>-->
           <!-- </form> -->
+
+          <!--Add to cart Button-->
           <button class="add-to-cart-button">
             <svg
               class="add-to-cart-box box-1"
@@ -291,7 +295,6 @@
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!--Add to cart stuff-->
-    <script src="js/add_to_cart.js"></script>
-  </body>
+    <script type="text/javascript" src="js/add_to_cart.js"></script>
   </body>
 </html>
