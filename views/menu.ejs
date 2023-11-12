@@ -89,9 +89,9 @@
           >
 
           <!--Cart button -->
-          <button class="btn btn-outline-primary">
-          <i class="bi bi-cart fs-2"></i>
-            </button>
+<button class="btn btn-outline-primary" id="cart" data-totalitems="0">
+  <i class="bi bi-cart fs-2"></i>
+</button>
             
 
           <!-- Profile dropdown button with a circular person icon -->
@@ -195,28 +195,31 @@
       <div class="container">
         <div class="row">
           <% products.forEach(product => { %>
-            <a href="/product/<%= product.name %>" style="cursor: pointer; text-decoration: none" class="col-md-4">
-            <div style="border: 0px" onpointerenter="this.setAttribute('style', 'transition: all 1s ease; border: 1.5px solid black; color: black; background: #d4faff')" onpointerleave="this.setAttribute('style', 'border: 0px; color: black; background: white')"  class="card mb-2">
-              <img
-                style="margin:auto; width:150px; height:300px"
-                src="<%= product.image%>"
-                class="card-img-top"
-                alt="Product Image"
-                
-              />
-              <div style="margin-left: auto;
-              margin-right: auto; text-align: center;"class="card-body">
-            <h5 class="card-title"><%= product.name %></h4>
-            <p class="card-text"><%= product.description %></p>
-            <p class="card-text"><%= product.calories %> cal</p>
-            <p class="card-text">Price: $<%= product.price %></p>
-            <!-- <form action="{{ url_for('add_product_to_cart') }}" method="post">
-              <input type="hidden" name="product_id" value="{{ product[0] }}"> -->
-             <!--<button style="background: rgb(0, 0, 0)" type="submit" class="btn btn-success">Add to Cart</button>-->
-          <!-- </form> -->
-
+            <div class="col-md-4">
+              <a href="/product/<%= product.name %>" style="cursor: pointer; text-decoration: none;">
+                <div
+                  style="border: 0px; text-decoration: none;"
+                  onpointerenter="this.style.transition = 'all 1s ease'; this.style.border = '1.5px solid black'; this.style.background = '#d4faff';"
+                  onpointerleave="this.style.transition = 'all 1s ease'; this.style.border = '0px'; this.style.background = 'white';"
+                  class="card mb-2"
+                >
+                  <img
+                    style="margin: auto; width: 150px; height: 300px; display: block;"
+                    src="<%= product.image %>"
+                    class="card-img-top"
+                    alt="Product Image"
+                  />
+                  <div style="color: black; margin: auto; text-align: center;" class="card-body">
+                    <h5 class="card-title" style="color: black;"><%= product.name %></h5>
+                    <p class="card-text" style="color: black;"><%= product.description %></p>
+                    <p class="card-text" style="color: black;"><%= product.calories %> cal</p>
+                    <p class="card-text" style="color: black;">Price: $<%= product.price %></p>
+                  </div>
+                </div>
+              </a>
           <!--Add to cart Button-->
-          <button class="add-to-cart-button">
+          <div>
+          <button class="add-to-cart-button" style="margin: auto">
             <svg
               class="add-to-cart-box box-1"
               width="24"
@@ -272,8 +275,8 @@
             <span class="added-to-cart">Added to cart</span>
           </button>
         </div>
-      </div>
-    </a>
+        </div>
+
         <% }); %> 
       </div>
         </div>
@@ -319,6 +322,6 @@
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!--Add to cart stuff-->
-    <script type="text/javascript" src="js/add_to_cart.js"></script>
+    <script type="text/javascript" src="/js/add_to_cart.js"></script>
   </body>
 </html>
