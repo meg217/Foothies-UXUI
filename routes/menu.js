@@ -26,11 +26,12 @@ router.get('/:category', (req, res) => {
     const sortPrice = '';
     const sortCal = '';
     const cartTotal = req.session.cartTotal || 0;
+    const sessionId = req.session.user ? req.session.user.sessionId || 0 : 0;
     const category = req.params.category;
     if(category == 'all'){
         Product.find({})
         .then(products => {
-            res.render('menu', { products: products, category, sortPrice, sortCal, cartTotal });
+            res.render('menu', { products: products, category, sortPrice, sortCal, cartTotal, sessionId });
         })
         .catch(err => {
             console.log(err);
@@ -46,7 +47,7 @@ router.get('/:category', (req, res) => {
     Product.find(query)
         .then(products => {
             //console.log('Products:', products);
-            res.render('menu', { products, category, sortPrice, sortCal, cartTotal });
+            res.render('menu', { products, category, sortPrice, sortCal, cartTotal, sessionId });
         })
         .catch(err => {
             console.error(err);
@@ -61,6 +62,7 @@ router.get('/:category/filter', async (req, res) => {
         let sortPrice= '';
         let sortCal= '';
         const cartTotal = req.session.cartTotal || 0;
+        const sessionId = req.session.user ? req.session.user.sessionId || 0 : 0;
         console.log('Category:', category);
 
         let query = {};
@@ -103,6 +105,7 @@ router.get('/:category/filter', async (req, res) => {
             sortPrice,
             sortCal,
             cartTotal,
+            sessionId,
         });
     } catch (err) {
         console.error(err);
