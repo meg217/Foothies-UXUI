@@ -48,12 +48,14 @@ const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/user");
 const menuRoutes = require("./routes/menu");
 const orderRoutes = require("./routes/order");
+const orderOptRoutes = require("./routes/orderOpt");
 const productRoutes = require("./routes/product");
 
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
 app.use("/menu", menuRoutes);
 app.use("/order", orderRoutes);
+app.use("/orderOpt", orderOptRoutes);
 app.use("/product", productRoutes);
 
 const port = process.env.PORT || 3000;

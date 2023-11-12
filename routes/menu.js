@@ -25,11 +25,12 @@ const uuid = require('uuid');
 router.get('/:category', (req, res) => {
     const sortPrice = '';
     const sortCal = '';
+    const cartTotal = req.session.cartTotal || 0;
     const category = req.params.category;
     if(category == 'all'){
         Product.find({})
         .then(products => {
-            res.render('menu', { products: products, category, sortPrice, sortCal });
+            res.render('menu', { products: products, category, sortPrice, sortCal, cartTotal });
         })
         .catch(err => {
             console.log(err);
@@ -45,7 +46,7 @@ router.get('/:category', (req, res) => {
     Product.find(query)
         .then(products => {
             //console.log('Products:', products);
-            res.render('menu', { products, category, sortPrice, sortCal });
+            res.render('menu', { products, category, sortPrice, sortCal, cartTotal });
         })
         .catch(err => {
             console.error(err);
@@ -59,6 +60,7 @@ router.get('/:category/filter', async (req, res) => {
         const category = req.params.category;
         let sortPrice= '';
         let sortCal= '';
+        const cartTotal = req.session.cartTotal || 0;
         console.log('Category:', category);
 
         let query = {};
@@ -100,12 +102,14 @@ router.get('/:category/filter', async (req, res) => {
             sortByCalories: req.query.sortByCalories,
             sortPrice,
             sortCal,
+            cartTotal,
         });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
 
 router.post('/add-to-cart/:productId', async (req, res) => {
   try {
@@ -116,6 +120,11 @@ router.post('/add-to-cart/:productId', async (req, res) => {
     const product = await Product.findById(productId);
 
     const sessionId = req.session.user ? req.session.user.sessionId : uuid.v4();
+    // if (!req.session.userType) {
+    //   req.session.originalUrl = req.originalUrl;
+    //   // Redirect to the page where the user selects their type
+    //   return res.redirect('/order');
+    // }
 
     // Check if the user is authenticated
     if (req.session.user) {
@@ -149,6 +158,7 @@ router.post('/add-to-cart/:productId', async (req, res) => {
         }
         // Save the cart to the database
         await cart.save();
+        req.session.cartTotal = calculateCartTotal(cart.items);
         res.json({
             success: true,
             message: 'Product added to cart',
@@ -175,6 +185,7 @@ router.post('/add-to-cart/:productId', async (req, res) => {
           });
           console.log('guest cart:', req.session.guestCart);
         }
+        req.session.cartTotal = calculateCartTotal(req.session.guestCart);
         res.json({
             success: true,
             message: 'Product added to cart',
