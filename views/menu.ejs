@@ -167,6 +167,27 @@
   <hr>
   </div>
 </div>
+
+<div class="filter-container">
+  <label for="priceFilter">Price:</label>
+  <select id="priceFilter" onchange="filterProducts()">
+    <option value="none">None</option>
+    <option value="lowToHigh">Low to High</option>
+    <option value="highToLow">High to Low</option>
+  </select>
+
+  <label for="caloriesFilter">Calories:</label>
+  <select id="caloriesFilter" onchange="filterProducts()">
+    <option value="none">None</option>
+    <option value="lowToHigh">Low to High</option>
+    <option value="highToLow">High to Low</option>
+  </select>
+
+  <label for="searchInput">Search:</label>
+  <input type="text" id="searchInput" oninput="filterProducts()">
+</div>
+
+
 <!--Products-->
     <section class="products">
       <div class="container">
