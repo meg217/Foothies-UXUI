@@ -119,7 +119,8 @@ router.post('/add-to-cart/:productId', async (req, res) => {
     // Get the product details from the database based on the productId
     const product = await Product.findById(productId);
 
-    const sessionId = req.session.user ? req.session.user.sessionId : uuid.v4();
+    const sessionId = req.session.user;
+    //  ? req.session.user.sessionId : uuid.v4();
     // if (!req.session.userType) {
     //   req.session.originalUrl = req.originalUrl;
     //   // Redirect to the page where the user selects their type
@@ -164,34 +165,35 @@ router.post('/add-to-cart/:productId', async (req, res) => {
             message: 'Product added to cart',
             cartTotal: calculateCartTotal(cart.items), 
           });
-      } else {
-        console.log('User is not authenticated');
-        // User is not authenticated (guest), handle guest cart logic here
-        // For example, you might store the cart in the session
-        req.session.guestCart = req.session.guestCart || [];
-        console.log('guest cart:', req.session.guestCart);
-        const existingItem = req.session.guestCart.find(item => item.item === productId);
+       } 
+      //else {
+      //   console.log('User is not authenticated');
+      //   // User is not authenticated (guest), handle guest cart logic here
+      //   // For example, you might store the cart in the session
+      //   req.session.guestCart = req.session.guestCart || [];
+      //   console.log('guest cart:', req.session.guestCart);
+      //   const existingItem = req.session.guestCart.find(item => item.item === productId);
   
-        if (existingItem) {
-          // If the product is already in the guest cart, increase the quantity
-          existingItem.quantity += 1;
-        } else {
-          // If the product is not in the guest cart, add it
-          console.log('Adding product to guest cart');
-          req.session.guestCart.push({
-            item: productId,
-            quantity: 1,
-            customizations: [], 
-          });
-          console.log('guest cart:', req.session.guestCart);
-        }
-        req.session.cartTotal = calculateCartTotal(req.session.guestCart);
-        res.json({
-            success: true,
-            message: 'Product added to cart',
-            cartTotal: calculateCartTotal(req.session.guestCart), 
-          });
-      }
+      //   if (existingItem) {
+      //     // If the product is already in the guest cart, increase the quantity
+      //     existingItem.quantity += 1;
+      //   } else {
+      //     // If the product is not in the guest cart, add it
+      //     console.log('Adding product to guest cart');
+      //     req.session.guestCart.push({
+      //       item: productId,
+      //       quantity: 1,
+      //       customizations: [], 
+      //     });
+      //     console.log('guest cart:', req.session.guestCart);
+      //   }
+      //   req.session.cartTotal = calculateCartTotal(req.session.guestCart);
+      //   res.json({
+      //       success: true,
+      //       message: 'Product added to cart',
+      //       cartTotal: calculateCartTotal(req.session.guestCart), 
+      //     });
+      // }
   
       // Send a success response
     } catch (error) {

@@ -8,6 +8,35 @@ const path = require('path');
 const mongoose = require('mongoose');
 const uuid = require('uuid');
 
+router.get('/guest', async (req, res) => {
+    try {
+      // Create a new user with a guest ID
+      const guestUser = new User({
+        first_name: 'Guest',
+        last_name: 'Account',
+        password: '1234',
+        email: `${uuid.v4()}guest@example.com`,
+      });
+  
+      // Save the new user to the database
+      await guestUser.save();
+  
+      // Initialize guest session
+      req.session.user = {
+        sessionId: uuid.v4(),
+        _id: guestUser._id,
+        first_name: guestUser.first_name,
+        last_name: guestUser.last_name,
+        email: guestUser.email,
+      };
+  
+      console.log('Session for guest:', req.session);
+      res.redirect('/menu/all');
+    } catch (error) {
+      console.error('Error creating guest user:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
 
 router.get('/login', (req, res) => {
     return res.redirect('/login.html');
@@ -43,7 +72,7 @@ router.post('/login', (req, res) => {
                   };
                 console.log('Session after login:', req.session);
                 console.log('login successful');
-                res.redirect('/');
+                res.redirect('/menu/all');
             });
         })
         .catch(err => {
@@ -71,7 +100,7 @@ router.post('/register', (req, res) => {
             if (existingUser) {
                 console.log('user already exists');
                 //return res.sendFile(path.join(__dirname, '../public', 'register.html'));
-                return res.redirect('/register.html');
+                return res.redirect('/login.html');
             }
         });
 
@@ -108,7 +137,7 @@ router.post('/register', (req, res) => {
                 last_name,
                 email
             };
-            res.redirect('/');
+            res.redirect('/menu/all');
         })
         .catch(saveError => {
             console.log('error saving user',saveError);
@@ -124,9 +153,12 @@ router.get('/logout', (req, res) => {
         console.error('Error destroying session:', err);
         return res.redirect('/');
       }
-      res.redirect('/');
+  
+      // Regenerate a new session
+      req.session = null;
+        res.redirect('/');
+      });
     });
-  });
 
 
 
