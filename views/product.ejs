@@ -122,10 +122,10 @@
     added to cart, add it to the users cart in the post method, and then allow for user
     to return to menu or checkout, return to menu button available at all times, but checkout button 
     available only after the user presses add to cart(use javascript to do this) -->
-    <div style="margin-top: 30px">
+    <div style="text-align: center; margin: auto; padding-top: 30px;">
       <% products.forEach(product => { %>
       <img
-        style="margin: auto; width: 300px; height: 600px"
+        style="margin: auto; width: 150px; height: 300px"
         src="<%= product.image%>"
         class="card-img-top"
         alt="Product Image"
@@ -136,17 +136,17 @@
           $<%= product.price %>
         </p>
         <p class="card-text"><%= product.calories %> Cal.</p>
-        <p style="width: 300px" class="card-text">
+        <p style="width: 300px; margin:auto" class="card-text">
           <%= product.long_description %>
         </p>
-        <p style="padding-bottom: 30px" class="card-text">
-          <%= product.ingredients.join(', ')%>
+        <p style="padding-bottom: 30px; padding-top:30px" class="card-text">
+          Ingredients: <%= product.ingredients.join(', ')%>
         </p>
       </div>
       <% }) %>
       <button
         type="button"
-        style="position: relative; margin-left: 800px"
+        style="position: relative; margin: auto"
         class="add-to-cart-button"
       >
         <svg
