@@ -190,7 +190,8 @@ router.post('/add-to-cart/:productId', async (req, res) => {
   });
   
 
-
+//make the cart update the rest of the pages in the header too, make it available to session for consitency
+//make an uption to login or continue as guest
 function calculateCartTotal(items) {
     if (Array.isArray(items)) {
       return items.reduce((total, item) => total + item.quantity, 0);
