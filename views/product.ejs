@@ -114,6 +114,11 @@
         </div>
       </div>
     </nav>
+    <div class="container">
+      <button style="margin-left: 10vmin;" type="button" onclick="goBack()" class="btn btn-primary btn-back">
+          <i class="bi bi-arrow-left"></i> Back
+      </button>
+  </div>
     <!--Product-->
 
     <!-- to-do: add the picture and re format the style to be big and add
@@ -204,6 +209,13 @@
         <span class="added-to-cart">Added to cart</span>
       </button>
     </div>
+
+    <script>
+      function goBack() {
+        window.history.back();
+      }
+    </script>
+
     <!-- Bootstrap core JS-->
     <link rel="stylesheet" href="css/bootstrap.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

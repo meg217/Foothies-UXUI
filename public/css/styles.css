@@ -11405,3 +11405,14 @@ footer.footer {
   background: #cecece;
   text-decoration: none;
 }
+
+.btn-back {
+  font-size: 18px;
+  margin-top: 20px;
+  background-color: #007bff; /* Bootstrap primary color */
+  border-color: #007bff;
+}
+
+.btn-back:hover {
+  background-color: #0056b3; /* Darker shade for hover effect */
+}

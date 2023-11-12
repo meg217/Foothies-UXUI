@@ -112,6 +112,9 @@ router.get('/:category/filter', async (req, res) => {
 
 
 router.post('/add-to-cart/:productId', async (req, res) => {
+  if(!req.session.user){
+      return res.redirect('/login.html');
+  }
   try {
     console.log('Adding product to cart');
     const productId = req.params.productId;
@@ -119,7 +122,6 @@ router.post('/add-to-cart/:productId', async (req, res) => {
     // Get the product details from the database based on the productId
     const product = await Product.findById(productId);
 
-    const sessionId = req.session.user.sessionId;
     //  ? req.session.user.sessionId : uuid.v4();
     // if (!req.session.userType) {
     //   req.session.originalUrl = req.originalUrl;
@@ -129,6 +131,7 @@ router.post('/add-to-cart/:productId', async (req, res) => {
 
     // Check if the user is authenticated
     if (req.session.user) {
+      const sessionId = req.session.user.sessionId;
         // User is authenticated, retrieve the user's cart
         console.log('User is authenticated');
         let cart = await Cart.findOne({ session: sessionId });
