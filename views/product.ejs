@@ -124,13 +124,13 @@
     available only after the user presses add to cart(use javascript to do this) -->
     <div style="margin-top: 30px">
       <% products.forEach(product => { %>
-      <div>
-        <img
-          style="margin-left: 40px; float: left; width: 500px; height: 500px"
-          src="/assets/logo.png"
-        />
-      </div>
-      <div style="float: right; margin-right: 400px">
+      <img
+        style="margin: auto; width: 300px; height: 600px"
+        src="<%= product.image%>"
+        class="card-img-top"
+        alt="Product Image"
+      />
+      <div style="margin: auto">
         <h5 style="font-size: 60px" class="card-title"><%= product.name %></h5>
         <p style="position: relative; font-size: 50px" class="card-text">
           $<%= product.price %>
