@@ -13,6 +13,10 @@ mongoose
 
 //schema for the user's cart info
 const cartSchema = new Schema({
+  session: {
+    type: String,
+    required: true,
+  },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User', // User model reference

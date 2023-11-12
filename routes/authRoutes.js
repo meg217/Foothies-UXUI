@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 const User = require('../models/user');
 const path = require('path');
 const mongoose = require('mongoose');
+const uuid = require('uuid');
 
 
 router.get('/login', (req, res) => {
@@ -31,12 +32,16 @@ router.post('/login', (req, res) => {
                    console.log('password not matched');
                    return res.redirect('/login.html');
                 }
+                //console.log(user);
+                console.log(user._id);
                 req.session.user = {
+                    sessionId: uuid.v4(),
                     _id: user._id,
                     first_name: user.first_name,
                     last_name: user.last_name,
                     email: user.email
                   };
+                console.log('Session after login:', req.session);
                 console.log('login successful');
                 res.redirect('/');
             });

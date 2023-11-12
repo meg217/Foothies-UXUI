@@ -5,6 +5,8 @@ const router = express.Router();
 const path = require('path');
 const Product = require('../models/product');
 const mongoose = require('mongoose');
+const Cart = require('../models/carts');
+const uuid = require('uuid');
 
 // router.get('/all', (req, res) => {
 //     //res.sendFile(path.join(__dirname, '../public', 'menu.html'));
@@ -42,7 +44,7 @@ router.get('/:category', (req, res) => {
     // Query the database for products 
     Product.find(query)
         .then(products => {
-            console.log('Products:', products);
+            //console.log('Products:', products);
             res.render('menu', { products, category, sortPrice, sortCal });
         })
         .catch(err => {
@@ -105,6 +107,78 @@ router.get('/:category/filter', async (req, res) => {
     }
 });
 
+router.post('/add-to-cart/:productId', async (req, res) => {
+  try {
+    console.log('Adding product to cart');
+    const productId = req.params.productId;
+    console.log('product id:', productId);
+    // Get the product details from the database based on the productId
+    const product = await Product.findById(productId);
+
+    const sessionId = req.session.user ? req.session.user.sessionId : uuid.v4();
+
+    // Check if the user is authenticated
+    if (req.session.user) {
+        // User is authenticated, retrieve the user's cart
+        console.log('User is authenticated');
+        let cart = await Cart.findOne({ session: sessionId });
+        
+        if (!cart) {
+            console.log('Cart not found');
+          cart = new Cart({
+            user: req.session.user._id,
+            session: sessionId,
+            items: [],
+          });
+        }
+        console.log('cart:', cart);
+  
+        const existingItem = cart.items.find(item => item.item.toString() === productId);
+  
+        if (existingItem) {
+          // If the product is already in the cart, increase the quantity
+          existingItem.quantity += 1;
+        } else {
+          // If the product is not in the cart, add it
+          cart.items.push({
+            item: product._id,
+            quantity: 1,
+            customizations: [], 
+          });
+          console.log('cart:', cart);   
+        }
+        // Save the cart to the database
+        await cart.save();
+      } else {
+        console.log('User is not authenticated');
+        // User is not authenticated (guest), handle guest cart logic here
+        // For example, you might store the cart in the session
+        req.session.guestCart = req.session.guestCart || [];
+        console.log('guest cart:', req.session.guestCart);
+        const existingItem = req.session.guestCart.find(item => item.item === productId);
+  
+        if (existingItem) {
+          // If the product is already in the guest cart, increase the quantity
+          existingItem.quantity += 1;
+        } else {
+          // If the product is not in the guest cart, add it
+          console.log('Adding product to guest cart');
+          req.session.guestCart.push({
+            item: productId,
+            quantity: 1,
+            customizations: [], 
+          });
+          console.log('guest cart:', req.session.guestCart);
+        }
+      }
+  
+      // Send a success response
+      res.json({ success: true, message: 'Product added to cart' });
+    } catch (error) {
+      console.error("Error:", error);
+      res.status(500).json({ success: false, message: 'Error adding product to cart' });
+    }
+  });
   
 
 //const Product = require('../models/product');
