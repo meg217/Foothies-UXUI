@@ -139,27 +139,27 @@
   <hr>
   <ul class="nav nav-pills pagination flex-column mb-auto">
     <li class="nav-item">
-      <a href="/menu" class="fs-5 underline-on-hover nav-link text-white">
+      <a href="/menu/all" class="fs-5 underline-on-hover nav-link text-white <%= category === 'all' ? 'active' : '' %>">
         All Drinks
       </a>
     </li>
     <li class="nav-item">
-      <a href="/menu/foothies" class="fs-5 underline-on-hover nav-link text-white">
+      <a href="/menu/foothies" class="fs-5 underline-on-hover nav-link text-white <%= category === 'foothies' ? 'active' : '' %>">
         Foothies
       </a>
     </li>
     <li class="nav-item">
-      <a href="/menu/smoothies" class="fs-5 underline-on-hover nav-link text-white">
+      <a href="/menu/smoothies" class="fs-5 underline-on-hover nav-link text-white <%= category === 'smoothies' ? 'active' : '' %>">
         Smoothies
       </a>
     </li>
     <li class="nav-item">
-      <a href="/menu/fizzys" class="fs-5 underline-on-hover nav-link text-white">
+      <a href="/menu/fizzys" class="fs-5 underline-on-hover nav-link text-white <%= category === 'fizzys' ? 'active' : '' %>">
         Fizzys
       </a>
     </li>
     <li class="nav-item">
-      <a href="/menu/juices" class="fs-5 underline-on-hover nav-link text-white">
+      <a href="/menu/juices" class="fs-5 underline-on-hover nav-link text-white <%= category === 'juices' ? 'active' : '' %>">
         Juices
       </a>
     </li>
@@ -168,24 +168,26 @@
   </div>
 </div>
 
-<div class="filter-container">
-  <label for="priceFilter">Price:</label>
-  <select id="priceFilter" onchange="filterProducts()">
-    <option value="none">None</option>
+<form action="/menu/<%= category %>/filter" method="get">
+  <label for="sortByPrice">Sort by Price:</label>
+  <select id="sortByPrice" name="sortByPrice">
+    <option selected disabled value="<%= sortPrice %>"><%= sortPrice %></option>
     <option value="lowToHigh">Low to High</option>
     <option value="highToLow">High to Low</option>
   </select>
 
-  <label for="caloriesFilter">Calories:</label>
-  <select id="caloriesFilter" onchange="filterProducts()">
-    <option value="none">None</option>
+  <label for="sortByCalories">Sort by Calories:</label>
+  <select id="sortByCalories" name="sortByCalories">
+    <option selected disabled value="<%= sortCal %>"><%= sortCal %></option>
     <option value="lowToHigh">Low to High</option>
     <option value="highToLow">High to Low</option>
   </select>
 
-  <label for="searchInput">Search:</label>
-  <input type="text" id="searchInput" oninput="filterProducts()">
-</div>
+  <label for="search">Search:</label>
+  <input type="text" id="search" name="search" placeholder="Search by name or ingredient">
+  <input type="hidden" name="category" value="<%= category %>">
+  <button type="submit">Apply Filters</button>
+</form>
 
 
 <!--Products-->
@@ -206,6 +208,7 @@
               margin-right: auto; text-align: center;"class="card-body">
             <h5 class="card-title"><%= product.name %></h4>
             <p class="card-text"><%= product.description %></p>
+            <p class="card-text"><%= product.calories %> cal</p>
             <p class="card-text">Price: $<%= product.price %></p>
             <!-- <form action="{{ url_for('add_product_to_cart') }}" method="post">
               <input type="hidden" name="product_id" value="{{ product[0] }}"> -->
