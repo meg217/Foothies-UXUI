@@ -149,6 +149,11 @@ router.post('/add-to-cart/:productId', async (req, res) => {
         }
         // Save the cart to the database
         await cart.save();
+        res.json({
+            success: true,
+            message: 'Product added to cart',
+            cartTotal: calculateCartTotal(cart.items), 
+          });
       } else {
         console.log('User is not authenticated');
         // User is not authenticated (guest), handle guest cart logic here
@@ -170,10 +175,14 @@ router.post('/add-to-cart/:productId', async (req, res) => {
           });
           console.log('guest cart:', req.session.guestCart);
         }
+        res.json({
+            success: true,
+            message: 'Product added to cart',
+            cartTotal: calculateCartTotal(req.session.guestCart), 
+          });
       }
   
       // Send a success response
-      res.json({ success: true, message: 'Product added to cart' });
     } catch (error) {
       console.error("Error:", error);
       res.status(500).json({ success: false, message: 'Error adding product to cart' });
@@ -181,33 +190,13 @@ router.post('/add-to-cart/:productId', async (req, res) => {
   });
   
 
-//const Product = require('../models/product');
 
-// Get all products
-// router.get('/', (req, res) => {
-//     Product.find({}, (err, products) => {
-//       if (err) {
-//         console.error(err);
-//         res.status(500).send('Internal Server Error');
-//       } else {
-//         res.render('products', { products }); // Render a products view with the list of products
-//       }
-//     });
-//   });
-  
-//   // Get products by category
-//   router.get('/category/:category', (req, res) => {
-//     const category = req.params.category;
-//     Product.find({ product_category: category }, (err, products) => {
-//       if (err) {
-//         console.error(err);
-//         res.status(500).send('Internal Server Error');
-//       } else {
-//         res.render('products', { products }); // Render a products view with the filtered products
-//       }
-//     });
-//   });
-
-
+function calculateCartTotal(items) {
+    if (Array.isArray(items)) {
+      return items.reduce((total, item) => total + item.quantity, 0);
+    } else {
+      return 0; 
+    }
+  }
 
 module.exports = router;

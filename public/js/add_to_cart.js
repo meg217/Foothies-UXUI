@@ -11,14 +11,14 @@ addToCartButton = document.querySelectorAll(".add-to-cart-button");
   addToCartButton.forEach(function (addToCartButton) {
     addToCartButton.addEventListener("click", async function () {
       addToCartButton.classList.add("added");
-        // update cart total
-        var cart = document.getElementById('cart');
-        var cartTotal = parseInt(cart.getAttribute('data-totalitems')) || 0;
-        var newCartTotal = cartTotal + 1;
-        var cartIcon = cart.querySelector('.bi-cart');
+        // // update cart total
+        // var cart = document.getElementById('cart');
+        // var cartTotal = parseInt(cart.getAttribute('data-totalitems')) || 0;
+        // var newCartTotal = cartTotal + 1;
+        // var cartIcon = cart.querySelector('.bi-cart');
   
-        cart.setAttribute('data-totalitems', newCartTotal);
-        cartIcon.textContent = newCartTotal;
+        // cart.setAttribute('data-totalitems', newCartTotal);
+        // cartIcon.textContent = newCartTotal;
 
       const productId = addToCartButton.getAttribute("data-product-id");
 
@@ -33,6 +33,12 @@ addToCartButton = document.querySelectorAll(".add-to-cart-button");
 
         const data = await response.json();
         console.log(data);
+
+        var cart = document.getElementById('cart');
+        var cartIcon = cart.querySelector('.bi-cart');
+        cart.setAttribute('data-totalitems', data.cartTotal);
+        cartIcon.textContent = data.cartTotal;
+
       } catch (error) {
         console.error("Error:", error);
       } finally {
