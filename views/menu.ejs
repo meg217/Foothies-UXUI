@@ -82,8 +82,11 @@
 
           <!-- if has a cart in session order now else checkout now -->
           <!-- Checkout Now button -->
-          <a class="btn btn-primary mx-lg-5 fs-5" href="<%= user ? '/cart' : '/auth/login/please login first' %>"
-            ><%= user ? 'Checkout Now' : 'Order Now' %></a>
+          <a
+            class="btn btn-primary mx-lg-5 fs-5"
+            href="<%= user ? '/cart' : '/auth/login/please login first' %>"
+            ><%= user ? 'Checkout Now' : 'Order Now' %></a
+          >
           <!-- <a class="btn btn-primary mx-lg-5 fs-5" href="/auth/login/please login first"
           >Order Now</a
           > -->
@@ -253,7 +256,7 @@
       <div class="container">
         <div class="row">
           <% products.forEach(product => { %>
-          <div class="col-md-4">
+          <div style="margin-top: 30px" class="col-md-4">
             <a
               href="/product/<%= product.name %>"
               style="cursor: pointer; text-decoration: none"
