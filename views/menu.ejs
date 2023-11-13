@@ -11,11 +11,11 @@
     <title>Menu</title>
     <!--Add to cart links-->
     <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="/css/add_to_cart.css" type="text/css" />
-  <!--END Add to cart links-->
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/add_to_cart.css" type="text/css" />
+    <!--END Add to cart links-->
 
     <link rel="icon" type="image" href="assets/logo.png" />
     <!-- Bootstrap icons-->
@@ -34,19 +34,16 @@
     <link type="text/css" href="/css/bootstrap.css" rel="stylesheet" />
     <link type="text/css" href="/css/styles.css" rel="stylesheet" />
   </head>
-  <body style="background-color: #ffffff;">
+  <body style="background-color: #ffffff">
     <!-- Navbar -->
-    <nav
-      class="navbar navbar-expand-lg navbar-light bg-light"
-    >
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
         <!-- Logo on the left (larger size) -->
         <a href="/" class="navbar-brand">
           <img
             src="/assets/FoothiesLogoTransparent.png"
             alt="Logo"
-            style="
-         width: calc(180px + 1vmin)"
+            style="width: calc(180px + 1vmin)"
           />
         </a>
 
@@ -62,14 +59,14 @@
         <div id="main-nav" class="collapse navbar-collapse">
           <ul class="navbar-nav mx-auto nav-justified">
             <li class="nav-item m-lg-4">
-              <a
-                href="/"
-                class="nav-link fs-5 underline-on-hover"
-                >Home</a
-              >
+              <a href="/" class="nav-link fs-5 underline-on-hover">Home</a>
             </li>
             <li class="nav-item m-lg-4">
-              <a href="/menu/all" class="nav-link link-primary active fs-5 underline-on-hover">Menu</a>
+              <a
+                href="/menu/all"
+                class="nav-link link-primary active fs-5 underline-on-hover"
+                >Menu</a
+              >
             </li>
             <li class="nav-item m-lg-4">
               <a href="/contact" class="nav-link fs-5 underline-on-hover"
@@ -89,7 +86,12 @@
           >
 
           <!--Cart button -->
-          <button class="btn btn-outline-primary" id="cart" data-totalitems="0" onclick="redirectToCart()">
+          <button
+            class="btn btn-outline-primary"
+            id="cart"
+            data-totalitems="0"
+            onclick="redirectToCart()"
+          >
             <i class="bi bi-cart fs-2"><%= cartTotal ? cartTotal : 0 %></i>
           </button>
           <script>
@@ -97,203 +99,269 @@
               window.location.href = "/cart";
             }
           </script>
-            
 
-            <!-- Profile dropdown button with a circular person icon -->
-            <div class="dropdown">
-              <button
-                class="btn btn-secondary dropdown-toggle"
-                type="button"
-                id="profileDropdown"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                style="font-size: 20px;"
-              >
-              <% if (user) { %>
-              <%= user.first_name[0].toUpperCase()+user.last_name[0].toUpperCase() %>
-            <% } else { %>
+          <!-- Profile dropdown button with a circular person icon -->
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="profileDropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style="font-size: 20px"
+            >
+              <% if (user) { %> <%=
+              user.first_name[0].toUpperCase()+user.last_name[0].toUpperCase()
+              %> <% } else { %>
               <i class="bi bi-person fs-2"></i>
-            <% } %>
+              <% } %>
             </button>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-            <% if (user) { %>
+            <ul
+              class="dropdown-menu dropdown-menu-end"
+              aria-labelledby="profileDropdown"
+            >
+              <% if (user) { %>
               <li>
                 <a class="dropdown-item" href="/user/settings">Settings</a>
               </li>
               <li>
                 <a class="dropdown-item" href="/auth/logout">Log Out</a>
               </li>
-            <% } else { %>
+              <% } else { %>
               <li>
-                <a class="dropdown-item" id="loginButton" href="/auth/login">Login</a>
+                <a class="dropdown-item" id="loginButton" href="/auth/login"
+                  >Login</a
+                >
               </li>
               <li>
-                <a class="dropdown-item" id="signupButton" href="/auth/register">Sign Up</a>
+                <a class="dropdown-item" id="signupButton" href="/auth/register"
+                  >Sign Up</a
+                >
               </li>
-            <% } %>
+              <% } %>
             </ul>
           </div>
         </div>
       </div>
     </nav>
 
+    <!--SIDEBAR NAVIGATION-->
+    <div class="sidebar">
+      <div
+        class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
+        style="height: 80vmax"
+      >
+        <a
+          href="/"
+          class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+        >
+          <span style="padding-left: 3vmin" class="fs-4">Menu Categories</span>
+        </a>
+        <hr />
+        <ul class="nav nav-pills pagination flex-column mb-auto">
+          <li class="nav-item">
+            <a
+              href="/menu/all"
+              class="fs-5 underline-on-hover nav-link text-white <%= category === 'all' ? 'active' : '' %>"
+            >
+              All Drinks
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              href="/menu/foothies"
+              class="fs-5 underline-on-hover nav-link text-white <%= category === 'foothies' ? 'active' : '' %>"
+            >
+              Foothies
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              href="/menu/smoothies"
+              class="fs-5 underline-on-hover nav-link text-white <%= category === 'smoothies' ? 'active' : '' %>"
+            >
+              Smoothies
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              href="/menu/fizzys"
+              class="fs-5 underline-on-hover nav-link text-white <%= category === 'fizzys' ? 'active' : '' %>"
+            >
+              Fizzys
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              href="/menu/juices"
+              class="fs-5 underline-on-hover nav-link text-white <%= category === 'juices' ? 'active' : '' %>"
+            >
+              Juices
+            </a>
+          </li>
+        </ul>
+        <hr />
+      </div>
+    </div>
 
-<!--SIDEBAR NAVIGATION-->
-<div class="sidebar">
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style=" height: 80vmax;">
-  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-        <span  style=" padding-left: 3vmin;" class="fs-4">Menu Categories</span>
-  </a>
-  <hr>
-  <ul class="nav nav-pills pagination flex-column mb-auto">
-    <li class="nav-item">
-      <a href="/menu/all" class="fs-5 underline-on-hover nav-link text-white <%= category === 'all' ? 'active' : '' %>">
-        All Drinks
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="/menu/foothies" class="fs-5 underline-on-hover nav-link text-white <%= category === 'foothies' ? 'active' : '' %>">
-        Foothies
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="/menu/smoothies" class="fs-5 underline-on-hover nav-link text-white <%= category === 'smoothies' ? 'active' : '' %>">
-        Smoothies
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="/menu/fizzys" class="fs-5 underline-on-hover nav-link text-white <%= category === 'fizzys' ? 'active' : '' %>">
-        Fizzys
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="/menu/juices" class="fs-5 underline-on-hover nav-link text-white <%= category === 'juices' ? 'active' : '' %>">
-        Juices
-      </a>
-    </li>
-  </ul>
-  <hr>
-  </div>
-</div>
+    <form
+      style="text-align: center; height: 70px; padding-top: 10px"
+      action="/menu/<%= category %>/filter"
+      method="get"
+      class="bg-dark text-white"
+    >
+      <label for="sortByPrice">Sort by Price:</label>
+      <select style="margin-right: 50px" id="sortByPrice" name="sortByPrice">
+        <option selected disabled value="<%= sortPrice %>">
+          <%= sortPrice %>
+        </option>
+        <option value="lowToHigh">Low to High</option>
+        <option value="highToLow">High to Low</option>
+      </select>
 
-<form action="/menu/<%= category %>/filter" method="get">
-  <label for="sortByPrice">Sort by Price:</label>
-  <select id="sortByPrice" name="sortByPrice">
-    <option selected disabled value="<%= sortPrice %>"><%= sortPrice %></option>
-    <option value="lowToHigh">Low to High</option>
-    <option value="highToLow">High to Low</option>
-  </select>
+      <label for="sortByCalories">Sort by Calories:</label>
+      <select
+        style="margin-right: 50px"
+        id="sortByCalories"
+        name="sortByCalories"
+      >
+        <option selected disabled value="<%= sortCal %>"><%= sortCal %></option>
+        <option value="lowToHigh">Low to High</option>
+        <option value="highToLow">High to Low</option>
+      </select>
 
-  <label for="sortByCalories">Sort by Calories:</label>
-  <select id="sortByCalories" name="sortByCalories">
-    <option selected disabled value="<%= sortCal %>"><%= sortCal %></option>
-    <option value="lowToHigh">Low to High</option>
-    <option value="highToLow">High to Low</option>
-  </select>
+      <label style="padding-top: 3px; padding-right: 10px" for="search"
+        >Search:</label
+      >
+      <input
+        style="padding-right: 30px"
+        type="text"
+        id="search"
+        name="search"
+        placeholder="Search Keyword"
+      />
+      <input type="hidden" name="category" value="<%= category %>" />
 
-  <label for="search">Search:</label>
-  <input type="text" id="search" name="search" placeholder="Search by name or ingredient">
-  <input type="hidden" name="category" value="<%= category %>">
-  <button type="submit">Apply Filters</button>
-</form>
+      <button class="btn btn-secondary" type="submit">Apply Filters</button>
+    </form>
 
-
-<!--Products-->
+    <!--Products-->
     <section class="products">
       <div class="container">
         <div class="row">
           <% products.forEach(product => { %>
-            <div class="col-md-4">
-              <a href="/product/<%= product.name %>" style="cursor: pointer; text-decoration: none;">
+          <div class="col-md-4">
+            <a
+              href="/product/<%= product.name %>"
+              style="cursor: pointer; text-decoration: none"
+            >
+              <div
+                style="border: 0px; text-decoration: none"
+                onpointerenter="this.style.transition = 'all 1s ease'; this.style.border = '1.5px solid black'; this.style.background = '#d4faff';"
+                onpointerleave="this.style.transition = 'all 1s ease'; this.style.border = '0px'; this.style.background = 'white';"
+                class="card mb-2"
+              >
+                <img
+                  style="
+                    margin: auto;
+                    width: 150px;
+                    height: 300px;
+                    display: block;
+                  "
+                  src="<%= product.image %>"
+                  class="card-img-top"
+                  alt="Product Image"
+                />
                 <div
-                  style="border: 0px; text-decoration: none;"
-                  onpointerenter="this.style.transition = 'all 1s ease'; this.style.border = '1.5px solid black'; this.style.background = '#d4faff';"
-                  onpointerleave="this.style.transition = 'all 1s ease'; this.style.border = '0px'; this.style.background = 'white';"
-                  class="card mb-2"
+                  style="color: black; margin: auto; text-align: center"
+                  class="card-body"
                 >
-                  <img
-                    style="margin: auto; width: 150px; height: 300px; display: block;"
-                    src="<%= product.image %>"
-                    class="card-img-top"
-                    alt="Product Image"
-                  />
-                  <div style="color: black; margin: auto; text-align: center;" class="card-body">
-                    <h5 class="card-title" style="color: black;"><%= product.name %></h5>
-                    <p class="card-text" style="color: black;"><%= product.description %></p>
-                    <p class="card-text" style="color: black;"><%= product.calories %> cal</p>
-                    <p class="card-text" style="color: black;">Price: $<%= product.price %></p>
-                  </div>
+                  <h5 class="card-title" style="color: black">
+                    <%= product.name %>
+                  </h5>
+                  <p class="card-text" style="color: black">
+                    <%= product.description %>
+                  </p>
+                  <p class="card-text" style="color: black">
+                    <%= product.calories %> cal
+                  </p>
+                  <p class="card-text" style="color: black">
+                    Price: $<%= product.price %>
+                  </p>
                 </div>
-              </a>
-          <!--Add to cart Button-->
-          <div>
-          <button class="add-to-cart-button" style="margin: auto" data-product-id="<%= product._id %>" data-user-session="<%= sessionId ? sessionId : 0 %>">
-            <svg
-              class="add-to-cart-box box-1"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect width="24" height="24" rx="2" fill="#ffffff" />
-            </svg>
-            <svg
-              class="add-to-cart-box box-2"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect width="24" height="24" rx="2" fill="#ffffff" />
-            </svg>
-            <svg
-              class="cart-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#ffffff"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <circle cx="9" cy="21" r="1"></circle>
-              <circle cx="20" cy="21" r="1"></circle>
-              <path
-                d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
-              ></path>
-            </svg>
-            <svg
-              class="tick"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-            >
-              <path fill="none" d="M0 0h24v24H0V0z" />
-              <path
-                fill="#ffffff"
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM9.29 16.29L5.7 12.7c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.59 7.59c-.38.39-1.02.39-1.41 0z"
-              />
-            </svg>
-            <span class="add-to-cart">Add to cart</span>
-            <span class="added-to-cart">Added to cart</span>
-          </button>
-        </div>
-        </div>
+              </div>
+            </a>
+            <!--Add to cart Button-->
+            <div>
+              <button
+                class="add-to-cart-button"
+                style="margin: auto"
+                data-product-id="<%= product._id %>"
+                data-user-session="<%= sessionId ? sessionId : 0 %>"
+              >
+                <svg
+                  class="add-to-cart-box box-1"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect width="24" height="24" rx="2" fill="#ffffff" />
+                </svg>
+                <svg
+                  class="add-to-cart-box box-2"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect width="24" height="24" rx="2" fill="#ffffff" />
+                </svg>
+                <svg
+                  class="cart-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#ffffff"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="9" cy="21" r="1"></circle>
+                  <circle cx="20" cy="21" r="1"></circle>
+                  <path
+                    d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                  ></path>
+                </svg>
+                <svg
+                  class="tick"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path fill="none" d="M0 0h24v24H0V0z" />
+                  <path
+                    fill="#ffffff"
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM9.29 16.29L5.7 12.7c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.59 7.59c-.38.39-1.02.39-1.41 0z"
+                  />
+                </svg>
+                <span class="add-to-cart">Add to cart</span>
+                <span class="added-to-cart">Added to cart</span>
+              </button>
+            </div>
+          </div>
 
-        <% }); %> 
+          <% }); %>
+        </div>
       </div>
-        </div>
-        </section>
+    </section>
 
-
-
-
-      <!-- <section id="shop">
+    <!-- <section id="shop">
       <div class="product-container">
         <% products.forEach(product => { %>
         <div class="product">
@@ -309,8 +377,6 @@
           </div>
         </div>
         <% }); %>  -->
-    
-
 
     <!-- <div class="product-list">
       <h1>Products</h1>
