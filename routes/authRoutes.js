@@ -52,14 +52,14 @@ router.post('/login', (req, res) => {
             if (!user) {
                console.log('no user found');
                 // User not found
-                return res.redirect('/login.html');
+                return res.redirect('/login.html?error=User not found');
             }
             // compare password with hashed password from bcrypt
             bcrypt.compare(password, user.password, (compareErr, isMatch) => {
                 if (compareErr || !isMatch) {
                    // return res.render('login', { message: 'Invalid email or password' });
                    console.log('password not matched');
-                   return res.redirect('/login.html');
+                   return res.redirect('/login.html?error=Password is not a match');
                 }
                 //console.log(user);
                 console.log(user._id);
