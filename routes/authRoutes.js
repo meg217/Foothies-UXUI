@@ -49,6 +49,17 @@ router.get('/login', (req, res) => {
     }
 });
 
+router.get('/login/:message', (req, res) => {
+    if (req.session.user) {
+        console.log('user already logged in');
+        return res.redirect('/menu/all');
+    }
+    else{
+    console.log('user not logged in');
+    return res.redirect('/login.html?error='+req.params.message);
+    }
+});
+
 router.post('/login', (req, res) => {
     const { email, password } = req.body;
 
