@@ -80,10 +80,13 @@
             </li>
           </ul>
 
-          <!-- "Order Now" button -->
-          <a class="btn btn-primary mx-lg-5 fs-5" href="/auth/login"
-            >Order Now</a
-          >
+          <!-- if has a cart in session order now else checkout now -->
+          <!-- Checkout Now button -->
+          <a class="btn btn-primary mx-lg-5 fs-5" href="<%= user ? '/cart' : '/auth/login/please login first' %>"
+            ><%= user ? 'Checkout Now' : 'Order Now' %></a>
+          <!-- <a class="btn btn-primary mx-lg-5 fs-5" href="/auth/login/please login first"
+          >Order Now</a
+          > -->
 
           <!--Cart button -->
           <button

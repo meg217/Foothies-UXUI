@@ -13,13 +13,15 @@ const Product = require("../models/product");
 router.get("/:productName", (req, res) => {
   //res.sendFile(path.join(__dirname, '../public', 'menu.html'));
   //res.render('menu.html');
+  const sessionId = req.session.user ? req.session.user.sessionId || 0 : 0;
+  const cartTotal = req.session.cartTotal || 0;
   const name = req.params.productName;
   const query = name ? { name: name } : {};
   console.log("productName:", name);
   Product.find( query )
     .then((products) => {
       console.log(products);
-      res.render("product", { products });
+      res.render("product", { products, sessionId, cartTotal });
     })
     .catch((err) => {
       console.log(err);
