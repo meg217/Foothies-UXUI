@@ -25,9 +25,9 @@ router.get('/', (req, res) => {
         const showNewAddressInput = user.address === null;
 
         if (user.address !== null) {
-          res.render('order', { savedAddress: user.address, showNewAddressInput });
+          res.render('orderOpt', { savedAddress: user.address, showNewAddressInput });
         } else {
-          res.render('order', { showNewAddressInput });
+          res.render('orderOpt', { showNewAddressInput });
         }
       })
       .catch(err => {
@@ -59,21 +59,45 @@ router.get('/', (req, res) => {
         .then(updatedUser => {
           // User's address updated successfully
           console.log('User address updated:', updatedUser.address);
-          res.redirect('/menu');
+          res.redirect('/order/submit'); //redirect to order confirmation
         })
         .catch(err => {
           console.error('Error updating user address:', err);
         });
     } else {
     // Redirect to the menu page to browse products
-    res.redirect('/menu');
+    res.redirect('/menu/all');
     }
   });
+
+  router.get('/confirmation', (req, res) => {
+    //order confirmation/invoice page and est time delivery or progress bar shown
+    res.render('confirmation');
+  });
+
+  router.get('/submit', (req, res) => {
+    //order submission page for credit card entry 
+    res.render('submit');
+  });
+
   
   // Handle the order form submission
   router.post('/submit', (req, res) => {
+    const { creditCard, expirationDate, cvv } = req.body;
         const { deliveryAddress } = req.body;
   
+    //add credit card to cards schema if not already in there and if user wants to save it for future orders
+    //if user does not want to save it, then just add the card to the order schema
+    
+  
+    // Create a new card schema with the user's credit card information
+    
+    const Card = mongoose.model('Card', {
+      creditCard: String,
+      expirationDate: String,
+      cvv: String,
+    });
+
     // Create a new order
     const newOrder = new Order({
       user: req.session.user._id,
