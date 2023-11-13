@@ -82,8 +82,11 @@
 
           <!-- if has a cart in session order now else checkout now -->
           <!-- Checkout Now button -->
-          <a class="btn btn-primary mx-lg-5 fs-5" href="<%= user ? '/cart' : '/auth/login/please login first' %>"
-            ><%= user ? 'Checkout Now' : 'Order Now' %></a>
+          <a
+            class="btn btn-primary mx-lg-5 fs-5"
+            href="<%= user ? '/cart' : '/auth/login/please login first' %>"
+            ><%= user ? 'Checkout Now' : 'Order Now' %></a
+          >
           <!-- <a class="btn btn-primary mx-lg-5 fs-5" href="/auth/login/please login first"
           >Order Now</a
           > -->
@@ -208,10 +211,16 @@
     </div>
 
     <form
-      style="text-align: center; height: 70px; padding-top: 10px"
+      style="
+        font-size: 2.3vmin;
+        text-align: center;
+        height: 70px;
+        padding-top: 10px;
+        background-color: #eee;
+      "
       action="/menu/<%= category %>/filter"
       method="get"
-      class="bg-dark text-white"
+      class="text-black"
     >
       <label for="sortByPrice">Sort by Price:</label>
       <select style="margin-right: 50px" id="sortByPrice" name="sortByPrice">
@@ -237,7 +246,7 @@
         >Search:</label
       >
       <input
-        style="padding-right: 30px"
+        style="padding-right: 30px; margin-right: 30px"
         type="text"
         id="search"
         name="search"
@@ -253,7 +262,7 @@
       <div class="container">
         <div class="row">
           <% products.forEach(product => { %>
-          <div class="col-md-4">
+          <div style="margin-top: 30px" class="col-md-4">
             <a
               href="/product/<%= product.name %>"
               style="cursor: pointer; text-decoration: none"
