@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
 const Cart = require('../models/carts'); 
 const Product = require('../models/product');
 
@@ -83,4 +84,4 @@ router.get('/', async (req, res) => {
 //         }
 //       }
 
-      module.exports = router;
+    module.exports = router;

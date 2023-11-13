@@ -62,13 +62,13 @@
             </li>
             <li class="nav-item m-lg-4">
               <a
-                href="/menu"
+                href="/menu/all"
                 class="nav-link link-primary active fs-5 underline-on-hover"
                 >Menu</a
               >
             </li>
             <li class="nav-item m-lg-4">
-              <a href="/contact.html" class="nav-link fs-5 underline-on-hover"
+              <a href="/contact" class="nav-link fs-5 underline-on-hover"
                 >Contact</a
               >
             </li>
@@ -80,7 +80,7 @@
           </ul>
 
           <!-- "Order Now" button -->
-          <a class="btn btn-primary mx-lg-5 fs-5" href="order.html"
+          <a class="btn btn-primary mx-lg-5 fs-5" href="/auth/login"
             >Order Now</a
           >
 
@@ -92,24 +92,31 @@
               id="profileDropdown"
               data-bs-toggle="dropdown"
               aria-expanded="false"
+              style="font-size: 20px;"
             >
-              <i class="bi bi-person fs-2"></i>
-            </button>
-            <ul
-              class="dropdown-menu dropdown-menu-end"
-              aria-labelledby="profileDropdown"
-            >
-              <li>
-                <a class="dropdown-item" id="loginButton" href="/login.html"
-                  >Login</a
-                >
-              </li>
-              <li>
-                <a class="dropdown-item" id="signupButton" href="/register.html"
-                  >Sign Up</a
-                >
-              </li>
-            </ul>
+            <% if (user) { %>
+            <%= user.first_name[0].toUpperCase()+user.last_name[0].toUpperCase() %>
+          <% } else { %>
+            <i class="bi bi-person fs-2"></i>
+          <% } %>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+          <% if (user) { %>
+            <li>
+              <a class="dropdown-item" href="/user/settings">Settings</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/auth/logout">Log Out</a>
+            </li>
+          <% } else { %>
+            <li>
+              <a class="dropdown-item" id="loginButton" href="/auth/login">Login</a>
+            </li>
+            <li>
+              <a class="dropdown-item" id="signupButton" href="/auth/register">Sign Up</a>
+            </li>
+          <% } %>
+          </ul>
           </div>
         </div>
       </div>

@@ -39,7 +39,14 @@ router.get('/guest', async (req, res) => {
   });
 
 router.get('/login', (req, res) => {
+    if (req.session.user) {
+        console.log('user already logged in');
+        return res.redirect('/menu/all');
+    }
+    else{
+        console.log('user not logged in');
     return res.redirect('/login.html');
+    }
 });
 
 router.post('/login', (req, res) => {
@@ -75,6 +82,7 @@ router.post('/login', (req, res) => {
                 res.redirect('/menu/all');
             });
         })
+    
         .catch(err => {
             console.log(err);
         });
