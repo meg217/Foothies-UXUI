@@ -127,10 +127,15 @@
       <label for="deliveryOption" class="form-label">Choose Pickup or Delivery:</label>
       <select class="form-select" id="deliveryOption" name="deliveryOption" required>
         <option value="pickup">Pickup</option>
-        <option value="saved">Delivery - Use Saved Address</option>
-        <option value="new">Delivery - Enter New Address</option>
+        <% if (user.first_name === "Guest") { %>
+          <option value="new">Delivery - Enter New Address</option>
+        <% } else { %>
+          <option value="saved">Delivery - Use Saved Address</option>
+          <option value="new">Delivery - Enter New Address</option>
+        <% } %>
       </select>
     </div>
+  </form>
 
     <!-- Saved address (displayed if the user has a saved address) -->
   
