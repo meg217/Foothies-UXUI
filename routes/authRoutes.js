@@ -18,9 +18,18 @@ router.get('/guest', async (req, res) => {
         password: '1234',
         email: `${uuid.v4()}guest@example.com`,
       });
+
+      const newCard = new Card({
+        user: guestUser,
+        card_fullname: null,
+        card_number: null,
+        expiration_date: null,
+        cvv: null,
+        });
   
       // Save the new user to the database
       await guestUser.save();
+      await newCard.save();
   
       // Initialize guest session
       req.session.user = {
