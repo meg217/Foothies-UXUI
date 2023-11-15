@@ -135,7 +135,6 @@
         <% } %>
       </select>
     </div>
-  </form>
 
     <!-- Saved address (displayed if the user has a saved address) -->
   
@@ -169,7 +168,50 @@
       
     </div>
 
-    <!-- <input type="hidden" name="showNewAddressInput" id="showNewAddressInput" value="<%= showNewAddressInput %>"> -->
+
+      <!-- Pickup/Delivery option -->
+      <div class="mb-3">
+        <label for="cardOption" class="form-label">Choose a payment method:</label>
+        <select class="form-select" id="cardOption" name="cardOption" required>
+          <% if (user.first_name === "Guest") { %>
+            <option value="new">Enter Card Information</option>
+          <% } else { %>
+            <option value="saved">Card - Use a Saved Card</option>
+            <option value="new">Card - Enter a new Card</option>
+          <% } %>
+        </select>
+      </div>
+
+
+    <!-- Saved card (displayed if the user has a saved card) -->
+    <div class="mb-3" id="savedCard">
+      <label class="form-label">Saved Card Information:</label>
+      <% if (savedCard.card_number == null) { %>
+        <p>No card on record, please enter a new payment method</p>
+      <% } else { %>
+        <p><%= savedCard.card_number %>, <%= savedCard.expiration_date %>, <%= savedAddress.state %></p>
+      <% } %>
+    </div>
+
+    <!-- New card input (displayed if the user chooses "Card - Enter New Card") -->
+    <div class="mb-3" id="newCard" style="display: none;">
+      <label for="card_fullname" class="form-label">Full Name on Card:</label>
+      <input type="text" id="card_fullname" name="card_fullname" class="form-control">
+    
+      <label for="card_number" class="form-label">Card Number:</label>
+      <input type="text" id="card_number" name="card_number" class="form-control">
+    
+      <label for="expiration_date" class="form-label">Expiration Date:</label>
+      <input type="text" id="expiration_date" name="expiration_date" class="form-control">
+    
+      <label for="cvv" class="form-label">CVV/CVC:</label>
+      <input type="text" id="cvv" name="cvv" class="form-control">
+      
+      <label for="saveCard" class="form-check-label">
+        <input type="checkbox" id="saveCard" name="saveCard" class="form-check-input" value="save">
+        Save this card for future purchases
+      </label>
+    </div>
 
     <div class="mb-3">
       <button type="submit" class="btn btn-primary">Continue</button>

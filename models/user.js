@@ -21,10 +21,6 @@ mongoose
 //schema for the user login
 //UserId, firstName, lastName, email, password, phoneNumber
 const UserSchema = new Schema({
-  UserId: {
-    type: Number,
-    unique: true,
-  },
   first_name: {
     type: String,
     required: true,
@@ -51,6 +47,10 @@ const UserSchema = new Schema({
     state: String,
     street: String,
     zip: String
+  },
+  card: {
+    type: Schema.Types.ObjectId,
+    ref: 'card', 
   },
 });
 
