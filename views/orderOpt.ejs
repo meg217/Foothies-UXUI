@@ -186,7 +186,7 @@
     <!-- Saved card (displayed if the user has a saved card) -->
     <div class="mb-3" id="savedCard">
       <label class="form-label">Saved Card Information:</label>
-      <% if (savedCard == null) { %>
+      <% if (savedCard.card_number == null) { %>
         <p>No card on record, please enter a new payment method</p>
       <% } else { %>
         <p><%= savedCard.card_number %>, <%= savedCard.expiration_date %>, <%= savedAddress.state %></p>
