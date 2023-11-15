@@ -80,12 +80,15 @@
           </ul>
 
           <!-- Checkout Now button -->
-          <a class="btn btn-primary mx-lg-5 fs-5" href="/cart"
-            >Checkout Now</a
-          >
+          <a class="btn btn-primary mx-lg-5 fs-5" href="/cart">Checkout Now</a>
 
           <!--Cart button -->
-          <button class="btn btn-outline-primary" id="cart" data-totalitems="0" onclick="redirectToCart()">
+          <button
+            class="btn btn-outline-primary"
+            id="cart"
+            data-totalitems="0"
+            onclick="redirectToCart()"
+          >
             <i class="bi bi-cart fs-2"><%= cartTotal ? cartTotal : 0 %></i>
           </button>
           <script>
@@ -102,40 +105,52 @@
               id="profileDropdown"
               data-bs-toggle="dropdown"
               aria-expanded="false"
-              style="font-size: 20px;"
+              style="font-size: 20px"
             >
-            <% if (user) { %>
-            <%= user.first_name[0].toUpperCase()+user.last_name[0].toUpperCase() %>
-          <% } else { %>
-            <i class="bi bi-person fs-2"></i>
-          <% } %>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-          <% if (user) { %>
-            <li>
-              <a class="dropdown-item" href="/user/settings">Settings</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="/auth/logout">Log Out</a>
-            </li>
-          <% } else { %>
-            <li>
-              <a class="dropdown-item" id="loginButton" href="/auth/login">Login</a>
-            </li>
-            <li>
-              <a class="dropdown-item" id="signupButton" href="/auth/register">Sign Up</a>
-            </li>
-          <% } %>
-          </ul>
+              <% if (user) { %> <%=
+              user.first_name[0].toUpperCase()+user.last_name[0].toUpperCase()
+              %> <% } else { %>
+              <i class="bi bi-person fs-2"></i>
+              <% } %>
+            </button>
+            <ul
+              class="dropdown-menu dropdown-menu-end"
+              aria-labelledby="profileDropdown"
+            >
+              <% if (user) { %>
+              <li>
+                <a class="dropdown-item" href="/user/settings">Settings</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/auth/logout">Log Out</a>
+              </li>
+              <% } else { %>
+              <li>
+                <a class="dropdown-item" id="loginButton" href="/auth/login"
+                  >Login</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" id="signupButton" href="/auth/register"
+                  >Sign Up</a
+                >
+              </li>
+              <% } %>
+            </ul>
           </div>
         </div>
       </div>
     </nav>
     <div class="container">
-      <button style="margin-left: 10vmin;" type="button" onclick="goBack()" class="btn btn-primary btn-back">
-          <i class="bi bi-arrow-left"></i> Back
+      <button
+        style="margin-left: 10vmin"
+        type="button"
+        onclick="goBack()"
+        class="btn btn-primary btn-back"
+      >
+        <i class="bi bi-arrow-left"></i> Back
       </button>
-  </div>
+    </div>
     <!--Product-->
 
     <!-- to-do: add the picture and re format the style to be big and add
@@ -144,97 +159,103 @@
     added to cart, add it to the users cart in the post method, and then allow for user
     to return to menu or checkout, return to menu button available at all times, but checkout button 
     available only after the user presses add to cart(use javascript to do this) -->
-    <div style="text-align: center; margin: auto; padding-top: 30px;">
-      <% products.forEach(product => { %>
-      <img
-        style="margin: auto; width: 150px; height: 300px"
-        src="<%= product.image%>"
-        class="card-img-top"
-        alt="Product Image"
-      />
-      <div style="margin: auto">
-        <h5 style="font-size: 60px" class="card-title"><%= product.name %></h5>
-        <p style="position: relative; font-size: 50px" class="card-text">
-          $<%= product.price %>
-        </p>
-        <p class="card-text"><%= product.calories %> Cal.</p>
-        <p style="width: 300px; margin:auto" class="card-text">
-          <%= product.long_description %>
-        </p>
-        <p style="padding-bottom: 30px; padding-top:30px" class="card-text">
-          Ingredients: <%= product.ingredients.join(', ')%>
-        </p>
-      </div>
-
-      <!--Add to cart Button-->
-          <div>
-          <button class="add-to-cart-button" style="margin: auto" data-product-id="<%= product._id %>" data-user-session="<%= sessionId ? sessionId : 0 %>">
-            <svg
-              class="add-to-cart-box box-1"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect width="24" height="24" rx="2" fill="#ffffff" />
-            </svg>
-            <svg
-              class="add-to-cart-box box-2"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect width="24" height="24" rx="2" fill="#ffffff" />
-            </svg>
-            <svg
-              class="cart-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#ffffff"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <circle cx="9" cy="21" r="1"></circle>
-              <circle cx="20" cy="21" r="1"></circle>
-              <path
-                d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
-              ></path>
-            </svg>
-            <svg
-              class="tick"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-            >
-              <path fill="none" d="M0 0h24v24H0V0z" />
-              <path
-                fill="#ffffff"
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM9.29 16.29L5.7 12.7c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.59 7.59c-.38.39-1.02.39-1.41 0z"
-              />
-            </svg>
-            <span class="add-to-cart">Add to cart</span>
-            <span class="added-to-cart">Added to cart</span>
-          </button>
+    <div>
+      <div style="text-align: center; margin: auto; padding-top: 30px">
+        <% products.forEach(product => { %>
+        <img
+          style="margin: auto; width: 150px; height: 300px"
+          src="<%= product.image%>"
+          class="card-img-top"
+          alt="Product Image"
+        />
+        <div style="margin: auto">
+          <h5 style="font-size: 60px" class="card-title">
+            <%= product.name %>
+          </h5>
+          <p style="position: relative; font-size: 50px" class="card-text">
+            $<%= product.price %>
+          </p>
+          <p class="card-text"><%= product.calories %> Cal.</p>
+          <p style="width: 300px; margin: auto" class="card-text">
+            <%= product.long_description %>
+          </p>
+          <p style="padding-bottom: 30px; padding-top: 30px" class="card-text">
+            Ingredients: <%= product.ingredients.join(', ')%>
+          </p>
         </div>
-        <% }) %>
-        <br>
-        <br>
-        <br>
 
-    <script>
-      function goBack() {
-        window.history.back();
-      }
-    </script>
+        <!--Add to cart Button-->
+        <button
+          class="add-to-cart-button"
+          style="margin: auto"
+          data-product-id="<%= product._id %>"
+          data-user-session="<%= sessionId ? sessionId : 0 %>"
+        >
+          <svg
+            class="add-to-cart-box box-1"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="24" height="24" rx="2" fill="#ffffff" />
+          </svg>
+          <svg
+            class="add-to-cart-box box-2"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="24" height="24" rx="2" fill="#ffffff" />
+          </svg>
+          <svg
+            class="cart-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#ffffff"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path
+              d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+            ></path>
+          </svg>
+          <svg
+            class="tick"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path fill="none" d="M0 0h24v24H0V0z" />
+            <path
+              fill="#ffffff"
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM9.29 16.29L5.7 12.7c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.59 7.59c-.38.39-1.02.39-1.41 0z"
+            />
+          </svg>
+          <span class="add-to-cart">Add to cart</span>
+          <span class="added-to-cart">Added to cart</span>
+        </button>
+      </div>
+      <% }) %>
+      <br />
+      <br />
+      <br />
 
+      <script>
+        function goBack() {
+          window.history.back();
+        }
+      </script>
     <!-- Bootstrap core JS-->
     <link rel="stylesheet" href="css/bootstrap.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
