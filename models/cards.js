@@ -1,6 +1,7 @@
 var express = require("express");
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+const User = require("./user");
 mongoose
   .connect(
     "mongodb+srv://meaganbmueller:rosebud560@ui2023.d1ghmxu.mongodb.net/gulpGalore",
@@ -13,35 +14,53 @@ mongoose
 
 //schema for the user card info
 const CardInfoSchema = new Schema({
-  User_Id: {
-    type: Number,
-    unique: true,
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'user', 
   },
   card_fullname: {
     type: String,
-    required: true,
   },
   card_number: {
     type: Number,
-    required: true,
-    unique: true,
   },
   expiration_date: {
     type: String,
-    required: true,
   },
-  cvv_cvc: {
+  cvv: {
     type: Number,
-    required: true,
-  },
-  billing_address: {
-    country: String,
-    city: String,
-    state: String,
-    street: String,
-    zip: Number,
   },
 });
+
+// // Mongoose test, if fail then will say user not found
+// User.findOne({ email: "meaganbmueller@gmail.com" })
+//   .exec()
+//   .then((user) => {
+//     console.log('Found user:', user);
+//     console.log('User ID:', user._id);
+//     const newCard = new Card({
+//       user: user,
+//       card_fullname: "Meagan Mueller",
+//       card_number: "1231231234",
+//       expiration_date: "01/01",
+//       cvv: "123",
+//       User_Id: user._id,
+//     });
+
+//     // Save the card to the database
+//     newCard.save()
+//       .then(savedCard => {
+//         console.log('Card saved:', savedCard);
+//       })
+//       .catch(err => {
+//         console.error('Error saving card:', err);
+//         // Handle the error appropriately
+//       });
+//   })
+//   .catch(err => {
+//     console.error('Error finding user:', err);
+//     // Handle the error appropriately
+//   });
 
 const Card = mongoose.model("card", CardInfoSchema);
 

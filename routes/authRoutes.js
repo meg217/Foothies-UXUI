@@ -7,6 +7,7 @@ const User = require('../models/user');
 const path = require('path');
 const mongoose = require('mongoose');
 const uuid = require('uuid');
+const Card = require('../models/cards'); 
 
 router.get('/guest', async (req, res) => {
     try {
@@ -106,63 +107,103 @@ router.post('/login', (req, res) => {
 // }));
 
 router.get('/register', (req, res) => {
+
+    if (req.session.user) {
+        console.log('user already logged in');
+        return res.redirect('/menu/all');
+    }
+    else{
     return res.redirect('/register.html');
+    }
 });
+
 
 router.post('/register', (req, res) => {
     const { first_name, last_name, email, password, phone_number } = req.body;
-    
-    // check if user and email already exist
+
+    // Check if user and email already exist
     User.findOne({ email })
         .exec()
-        .then(existingUser =>{
+        .then(existingUser => {
             if (existingUser) {
-                console.log('user already exists');
-                //return res.sendFile(path.join(__dirname, '../public', 'register.html'));
+                console.log('User already exists');
                 return res.redirect('/login.html');
             }
-        });
 
-    //encrypt the password
-    bcrypt.hash(password, 10, (err, hash) => {
-        if (err) {
-            console.log('error setting up password');
-            return res.redirect('/register.html');
-        }
+            // Encrypt the password
+            bcrypt.hash(password, 10, (err, hash) => {
+                if (err) {
+                    console.log('Error setting up password');
+                    return res.redirect('/register.html');
+                }
 
-        // Create a new User and save to db
-        const newUser = new User({
-            first_name,
-            last_name,
-            email,
-            password: hash,
-            phone_number,
-            address: {
-                city: null,
-                state: null,
-                street: null,
-                zip:null
-            }
-        });
+                // Create a new User and save to db
+                const newUser = new User({
+                    first_name,
+                    last_name,
+                    email,
+                    password: hash,
+                    phone_number,
+                    address: {
+                        city: null,
+                        state: null,
+                        street: null,
+                        zip: null
+                    }
+                });
 
+                const newCard = new Card({
+                    user: newUser,
+                    card_fullname: null,
+                    card_number: null,
+                    expiration_date: null,
+                    cvv: null,
+                });
 
-        //catch new user save error
-        newUser.save()
-        .then(() => {
-            console.log('Registration successful');
-            req.session.user = {
-                _id: newUser._id,
-                first_name,
-                last_name,
-                email
-            };
-            res.redirect('/menu/all');
+                // req.session.user = {
+                //     sessionId: uuid.v4(),
+                //     _id: newUser._id,
+                //     first_name: newUser.first_name,
+                //     last_name: newUser.last_name,
+                //     email: newUser.email
+                //   };
+
+                //   console.log('Session after registration:', req.session);
+
+                // Save the card to the database
+                newCard.save()
+                    .then(savedCard => {
+                        console.log('Card saved:', savedCard);
+
+                        // Save the new user
+                        newUser.save()
+                            .then(() => {
+                                console.log('Registration successful');
+                                req.session.user = {
+                                    sessionId: uuid.v4(),
+                                    _id: newUser._id,
+                                    first_name,
+                                    last_name,
+                                    email
+                                };
+                                res.redirect('/menu/all');
+                            })
+                            .catch(saveError => {
+                                console.log('Error saving user', saveError);
+                                return res.redirect('/register.html');
+                            });
+                    })
+                    .catch(cardError => {
+                        console.error('Error saving card:', cardError);
+                        // Handle the error appropriately
+                        return res.redirect('/register.html');
+                    });
+            });
         })
-        .catch(saveError => {
-            console.log('error saving user',saveError);
+        .catch(error => {
+            console.error('Error checking existing user:', error);
             return res.redirect('/register.html');
         });
-    });
 });
 
 

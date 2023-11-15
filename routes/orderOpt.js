@@ -8,45 +8,69 @@ const Cart = require('../models/carts');
 const Order = require('../models/orders'); 
 const mongoose = require('mongoose');
 const User = require('../models/user');
+const Card = require('../models/cards');
 
 // Display the order page
 router.get('/', (req, res) => {
-    
-    // Check if the user is logged in
-    if (!req.session.user) {
-      return res.redirect('/login.html');
-    }
-  
-    // Fetch the user's saved address from the database
-    const userId = req.session.user._id; 
-    User.findById(userId)
-      .then(user => {
-        // check if adress is null for the neew address section
-        const showNewAddressInput = user.address === null;
+  // Check if the user is logged in
+  if (!req.session.user) {
+    return res.redirect('/login.html');
+  }
 
-        if (user.address !== null) {
-          res.render('orderOpt', { savedAddress: user.address, showNewAddressInput });
-        } else {
-          res.render('orderOpt', { showNewAddressInput });
-        }
-      })
-      .catch(err => {
-        console.error(err);
-        res.status(500).json({ error: 'Internal Server Error' });
-      });
-  });
-  
+  const userId = req.session.user._id;
+  let foundUser; // Define user in a broader scope
+
+  // Fetch the user
+  User.findById(userId)
+    .then(user => {
+      // Assign user to the broader scope variable
+      foundUser = user;
+
+      // Fetch the user's saved card from the database
+      console.log("userId to find for card:", userId);
+      console.log("user to find for card:", user._id);
+
+      // Fetch the user's saved card from the database
+      return Card.findOne({ user: user });
+    })
+    .then(card => {
+      console.log("card found:", card);
+      console.log("address:", foundUser.address); // Access user from the broader scope
+      console.log("card num:", card ? card.card_number : null);
+
+      if (card && foundUser.address) {
+        res.render('orderOpt', { savedAddress: foundUser.address, savedCard: card });
+      }
+      else if (card) {
+        res.render('orderOpt', { savedAddress: foundUser.address, savedCard: card });
+      }
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    });
+});
+
+
+
   // Handle the delivery or pickup option submission
-  router.post('/options', (req, res) => {
-    const { deliveryOption, saveAddress, street, city, state, zip } = req.body;
-    req.session.deliveryOption = deliveryOption;
-    //req.session.deliveryAddress = { street, city, state, zip };
-    console.log('delivery option:', req.session.deliveryOption);
+router.post('/options', async (req, res) => {
+  const { deliveryOption, saveAddress, street, city, state, cardOption, saveCard, zip, card_fullname, card_number, expiration_date, cvv } = req.body;
+  req.session.deliveryOption = deliveryOption;
+  req.session.cardOption = cardOption;
 
-    const shouldSaveAddress = saveAddress === 'save';
+  console.log('delivery option:', req.session.deliveryOption);
+  console.log('card option:', req.session.cardOption);
 
-    //check for the save adress check box
+  const shouldSaveAddress = saveAddress === 'save';
+  const shouldSaveCard = saveCard === 'save';
+
+  try {
+    // Fetch the user to get their current data
+    const user = await User.findById(req.session.user._id);
+
     if (shouldSaveAddress && deliveryOption === 'new') {
+      // Create a new address object
       const newAddress = {
         city,
         state,
@@ -54,21 +78,41 @@ router.get('/', (req, res) => {
         zip,
       };
 
-      // Save the user's address to the database
-      User.findByIdAndUpdate(req.session.user._id, { address: newAddress }, { new: true })
-        .then(updatedUser => {
-          // User's address updated successfully
-          console.log('User address updated:', updatedUser.address);
-          res.redirect('/order/submit'); //redirect to order confirmation
-        })
-        .catch(err => {
-          console.error('Error updating user address:', err);
-        });
-    } else {
-    // Redirect to the menu page to browse products
-    res.redirect('/menu/all');
+      // Update the user's address in the database
+      user.address = newAddress;
     }
-  });
+
+    if (shouldSaveCard && cardOption === 'new') {
+      // Create a new card object
+      const cardNumber = card_number.replace(/\D/g, '');
+      const user = await User.findById(req.session.user._id);
+      const newCard = new Card({
+        user: user,
+        card_fullname,
+        card_number: Number(cardNumber),
+        expiration_date,
+        cvv,
+      });
+
+      // Save the card to the database
+      await newCard.save();
+    }
+
+    // Save the updated user to the database
+    await user.save();
+
+    // Redirect to the appropriate page
+    if (shouldSaveAddress || shouldSaveCard) {
+      res.redirect('/order/submit');
+    } else {
+      res.redirect('/menu/all');
+    }
+  } catch (err) {
+    console.error('Error updating user:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 
   router.get('/confirmation', (req, res) => {
     //order confirmation/invoice page and est time delivery or progress bar shown
