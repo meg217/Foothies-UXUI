@@ -8,7 +8,7 @@ const app = express();
 const uuid = require('uuid');
 
 // Serve static files from the "public" directory
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "/public")));
 
 // Session management
 app.use(
@@ -52,6 +52,7 @@ const orderOptRoutes = require("./routes/orderOpt");
 const productRoutes = require("./routes/product");
 const cartRoutes = require("./routes/cart");
 const contactRoutes = require("./routes/contact");
+
 
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
