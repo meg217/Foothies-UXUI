@@ -5,8 +5,8 @@ const router = express.Router();
 const path = require('path');
 
 // Display the order page
-router.get('/', (req, res) => {
-    res.render('rewards');
+router.get('/rewards', (req, res) => {
+    res.render('rewards.ejs');
   });
 
   module.exports = router;

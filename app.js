@@ -52,6 +52,7 @@ const orderOptRoutes = require("./routes/orderOpt");
 const productRoutes = require("./routes/product");
 const cartRoutes = require("./routes/cart");
 const contactRoutes = require("./routes/contact");
+const rewardsRoutes = require("./routes/rewards");
 
 
 app.use("/auth", authRoutes);
@@ -62,6 +63,7 @@ app.use("/orderOpt", orderOptRoutes);
 app.use("/product", productRoutes);
 app.use("/cart", cartRoutes);
 app.use("/contact", contactRoutes);
+app.use("/rewards", rewardsRoutes);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
