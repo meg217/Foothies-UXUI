@@ -86,16 +86,18 @@ router.post('/options', async (req, res) => {
       // Create a new card object
       const cardNumber = card_number.replace(/\D/g, '');
       const user = await User.findById(req.session.user._id);
-      const newCard = new Card({
-        user: user,
-        card_fullname,
-        card_number: Number(cardNumber),
-        expiration_date,
-        cvv,
-      });
+      const existingCard = await Card.findOne({ user: user });
+      if (existingCard) {
+        // Update the existing card
+        existingCard.card_fullname = card_fullname;
+        existingCard.card_number = Number(cardNumber);
+        existingCard.expiration_date = expiration_date;
+        existingCard.cvv = cvv;
 
       // Save the card to the database
-      await newCard.save();
+      await existingCard.save();
+    }
+
     }
 
     // Save the updated user to the database
@@ -127,22 +129,10 @@ router.post('/options', async (req, res) => {
   
   // Handle the order form submission
   router.post('/submit', (req, res) => {
-    const { creditCard, expirationDate, cvv } = req.body;
-        const { deliveryAddress } = req.body;
+    const { creditCard, expirationDate, cvv, deliveryAddress } = req.body;
   
-    //add credit card to cards schema if not already in there and if user wants to save it for future orders
-    //if user does not want to save it, then just add the card to the order schema
-    
-  
-    // Create a new card schema with the user's credit card information
-    
-    const Card = mongoose.model('Card', {
-      creditCard: String,
-      expirationDate: String,
-      cvv: String,
-    });
 
-    // Create a new order
+    // store order in database
     const newOrder = new Order({
       user: req.session.user._id,
       deliveryOption: req.session.deliveryOption,
@@ -157,7 +147,7 @@ router.post('/options', async (req, res) => {
         // Clear the user's cart after the order is placed
         req.session.cart = [];
   
-        // Redirect to a confirmation page or display a success message
+        // Redirect to a confirmation page or display a success message like "checkmark order comfirmed"
         res.redirect('/order/confirmation');
       })
       .catch(err => {
