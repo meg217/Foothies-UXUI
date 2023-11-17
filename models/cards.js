@@ -22,13 +22,13 @@ const CardInfoSchema = new Schema({
     type: String,
   },
   card_number: {
-    type: Number,
+    type: String,
   },
   expiration_date: {
     type: String,
   },
   cvv: {
-    type: Number,
+    type: String,
   },
 });
 

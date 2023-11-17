@@ -81,8 +81,8 @@ router.post('/options', async (req, res) => {
       // Update the user's address in the database
       user.address = newAddress;
     }
-    const address = user.address;
-    req.session.address = address;
+    const address = user.address | 0;
+    req.session.address = address | 0;
 
     if (shouldSaveCard && cardOption === 'new') {
       // Create a new card object
@@ -122,7 +122,8 @@ router.post('/options', async (req, res) => {
 
   router.get('/confirmation', (req, res) => {
     //order confirmation/invoice page and est time delivery or progress bar shown
-    res.render('confirmation');
+    req.session.destroy();
+    res.render('confirm');
   });
 
   router.get('/submit', (req, res) => {
@@ -133,7 +134,7 @@ router.post('/options', async (req, res) => {
     const cart = req.session.cart || [];
   
     res.render('submit', {
-      address,
+      deliveryAddress,
       card,
       deliveryOption,
       deliveryAddress,
@@ -144,16 +145,16 @@ router.post('/options', async (req, res) => {
   
   // Handle the order form submission
   router.post('/submit', (req, res) => {
-    const { address } = req.body;
+    const { deliveryAddress, totalAmount } = req.body;
   
 
     // store order in database
     const newOrder = new Order({
       user: req.session.user._id,
       deliveryOption: req.session.deliveryOption,
-      deliveryAddress: address,
+      deliveryAddress: deliveryAddress,
       items: req.session.cart, 
-      totalAmount: calculateTotalAmount(req.session.cart), 
+      totalAmount: totalAmount, 
     });
   
     // Save the order to the database
@@ -163,7 +164,8 @@ router.post('/options', async (req, res) => {
         req.session.cart = [];
   
         // Redirect to a confirmation page or display a success message like "checkmark order comfirmed"
-        res.redirect('/order/confirmation');
+        console.log('Order saved:', order);
+        res.redirect('/orderOpt/confirmation');
       })
       .catch(err => {
         console.error(err);
