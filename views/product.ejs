@@ -80,10 +80,16 @@
           </ul>
 
           <!-- Checkout Now button -->
-          <a class="btn btn-primary mx-lg-5 fs-5" href="/cart">Checkout Now</a>
+          <a
+          class="btn btn-primary mx-lg-5 fs-5"
+          href="<%= user ? '/cart' : '/auth/login/please login first' %>"
+          ><%= user ? 'Checkout Now' : 'Order Now' %></a
+        >
 
           <!--Cart button -->
+          <!--Cart button -->
           <button
+            style="margin-right: 30px; height: 70px"
             class="btn btn-outline-primary"
             id="cart"
             data-totalitems="0"
