@@ -130,7 +130,7 @@ router.post('/options', async (req, res) => {
     const { address, card } = req.session;
     // Render the order submission page with order summary
     const deliveryOption = req.session.deliveryOption || 'Not selected';
-    const deliveryAddress = req.session.address || 'Not provided';
+    const deliveryAddress = req.session.address || 'Not provided' || address;
     const cart = req.session.cart || [];
   
     res.render('submit', {

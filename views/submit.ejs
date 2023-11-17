@@ -137,7 +137,7 @@
     <h2>Order Summary</h2>
   
     <p><strong>Delivery Option:</strong> <%= deliveryOption %></p>
-    <% if (deliveryOption !== 'pickup') { %>
+    <% if (deliveryOption !== 'pickup' && deliveryOption !== 'saved') { %>
         <p><strong>Delivery Address:</strong> <%= deliveryAddress.street %>, <%= deliveryAddress.city %> <%= deliveryAddress.state %></p>
     <% } %>
   
