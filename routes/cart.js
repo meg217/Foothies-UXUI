@@ -32,6 +32,7 @@ router.get('/', async (req, res) => {
                         product,
                         quantity: cartItem.quantity,
                     });
+                req.session.cart = productsInCart;
                 }
             }
 

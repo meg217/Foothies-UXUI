@@ -26,7 +26,7 @@
     <link type="text/css" href="/css/bootstrap.css" rel="stylesheet" />
     <link type="text/css" href="/css/styles.css" rel="stylesheet" />
   </head>
-  <body>
+  <body style="background-color: #c3f6fc;">
    <!-- Navbar -->
    <nav
    class="navbar navbar-expand-lg navbar-light bg-light"
@@ -118,13 +118,24 @@
    </div>
  </nav>
 
- <div class="container mt-4">
+  <!-- back button -->
+  <div class="container">
+    <button
+      type="button"
+      onclick="goBack()"
+      class="btn btn-primary btn-back"
+    >
+      <i class="bi bi-arrow-left"></i> Back
+    </button>
+  </div>
+
+ <div class="container mt-4" style="background-color:white; padding:40px">
   <h2>Place an Order</h2>
 
   <form action="/orderOpt/options" method="POST">
     <!-- Pickup/Delivery option -->
     <div class="mb-3">
-      <label for="deliveryOption" class="form-label">Choose Pickup or Delivery:</label>
+      <label for="deliveryOption" class="form-label"><strong>Choose Pickup or Delivery:</strong></label>
       <select class="form-select" id="deliveryOption" name="deliveryOption" required>
         <option value="pickup">Pickup</option>
         <% if (user.first_name === "Guest") { %>
@@ -171,7 +182,7 @@
 
       <!-- Pickup/Delivery option -->
       <div class="mb-3">
-        <label for="cardOption" class="form-label">Choose a payment method:</label>
+        <label for="cardOption" class="form-label"><strong>Choose a payment method:</strong></label>
         <select class="form-select" id="cardOption" name="cardOption" required>
           <% if (user.first_name === "Guest") { %>
             <option value="new">Enter Card Information</option>
@@ -219,7 +230,11 @@
   </form>
 </div>
 
-
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>
 
     <!-- Bootstrap core JS-->
     <link rel="stylesheet" href="css/bootstrap.css" />

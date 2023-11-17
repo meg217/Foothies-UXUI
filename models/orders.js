@@ -26,11 +26,6 @@ mongoose
       type: Date,
       default: Date.now, // set date to current date
     },
-    status: {
-      type: String,
-      enum: ['pending', 'in-progress', 'delivered'],
-      default: 'pending', // Default pending
-    },
     items: [
       {
         item: {

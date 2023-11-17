@@ -24,8 +24,8 @@
       type="text/css"
     />
     <!-- Core theme -->
-    <link href="css/bootstrap.css" rel="stylesheet" />
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
   </head>
   <body style="background-color: #c3f6fc">
    <!-- Navbar -->
@@ -120,6 +120,7 @@
  </nav>
 
  <!-- back button -->
+ <br>
  <div class="container">
   <button
     type="button"
@@ -131,15 +132,13 @@
 </div>
 
 
- <div class="container mt-5" style="background-color: white; padding: 40px;">
+ <div class="container mt-4" style="background-color: white; padding: 40px">
 
-  <h1 class="mb-4">Shopping Cart</h1>
-
-  <% if (cart.items.length === 0) { %>
-    <div class="alert alert-info" role="alert">
-      Your cart is empty.
-    </div>
-  <% } else { %>
+    <h2>Order Summary</h2>
+  
+    <p><strong>Delivery Option:</strong> <%= deliveryOption %></p>
+    <p><strong>Delivery Address:</strong> <%= deliveryAddress.street %>, <%= deliveryAddress.city %> <%= deliveryAddress.state %></p>
+  
     <table class="table">
       <thead>
         <tr>
@@ -149,50 +148,51 @@
         </tr>
       </thead>
       <tbody>
-        <% let totalQuantity = 0; %>
-        <% let totalAmount = 0; %>
-        <% productsInCart.forEach(item => { %>
+        <% let subtotal = 0; %>
+        <% cart.forEach(item => { %>
           <tr>
             <td><strong><%= item.product.name %></strong></td>
             <td><%= item.quantity %></td>
-            <td>$<%= item.product.price * item.quantity %></td>
+            <% const itemTotal = item.product.price * item.quantity; %>
+            <td>$<%= itemTotal.toFixed(2) %></td>
           </tr>
-          <% totalQuantity += item.quantity; %>
-          <% totalAmount += item.product.price * item.quantity; %>
+          <% subtotal += itemTotal; %>
         <% }); %>
-        <tr>
-          <td colspan="2" class="font-weight-bold">Total Quantity in Cart:</td>
-          <td><%= totalQuantity %></td>
-        </tr>
-        <tr>
-          <td colspan="2" class="font-weight-bold">Subtotal:</td>
-          <td class="font-weight-bold">$<%= totalAmount %></td>
-        </tr>
       </tbody>
     </table>
-
-    <div class="text-right">
-      <a href="/orderOpt" class="btn btn-primary">Continue to Checkout</a>
-    </div>
-  <% } %>
-
-</div>
+  
+    <% const taxRate = 0.0825; %>
+    <% const taxAmount = parseFloat((taxRate * subtotal).toFixed(2)); %>
+    <% const orderTotal = parseFloat((subtotal + taxAmount).toFixed(2)); %>
+  
+    <p><strong>Subtotal:</strong> $<%= subtotal.toFixed(2) %></p>
+    <p><strong>Tax (8.25%):</strong> $<%= taxAmount.toFixed(2) %></p>
+    <p><strong>Total Amount (including tax):</strong> $<%= orderTotal.toFixed(2) %></p>
+  
+    <form action="/order/place" method="POST">
+      <!-- Add any necessary credit card input fields here -->
+  
+      <button type="submit" class="btn btn-primary">Place Order</button>
+    </form>
+  
+  </div>
+  
+  
+  
 
 <script>
-  function goBack() {
-    window.history.back();
-  }
-</script>
+    function goBack() {
+      window.history.back();
+    }
+  </script>
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap core JS-->
     <link rel="stylesheet" href="css/bootstrap.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</body>
-</div>
-
+    <!--Add to cart stuff-->
+    <script type="text/javascript" src="/js/add_to_cart.js"></script>
+  </body>
 </html>

@@ -81,6 +81,8 @@ router.post('/options', async (req, res) => {
       // Update the user's address in the database
       user.address = newAddress;
     }
+    const address = user.address;
+    req.session.address = address;
 
     if (shouldSaveCard && cardOption === 'new') {
       // Create a new card object
@@ -99,15 +101,17 @@ router.post('/options', async (req, res) => {
     }
 
     }
+    // const thisUser = await User.findById(req.session.user._id);
+    // const card = await Card.findOne({ user: thisUser });
 
     // Save the updated user to the database
     await user.save();
 
     // Redirect to the appropriate page
     if (shouldSaveAddress || shouldSaveCard) {
-      res.redirect('/order/submit');
+      res.redirect('/orderOpt/submit');
     } else {
-      res.redirect('/menu/all');
+      res.redirect('/orderOpt/submit');
     }
   } catch (err) {
     console.error('Error updating user:', err);
@@ -122,21 +126,32 @@ router.post('/options', async (req, res) => {
   });
 
   router.get('/submit', (req, res) => {
-    //order submission page for credit card entry 
-    res.render('submit');
+    const { address, card } = req.session;
+    // Render the order submission page with order summary
+    const deliveryOption = req.session.deliveryOption || 'Not selected';
+    const deliveryAddress = req.session.address || 'Not provided';
+    const cart = req.session.cart || [];
+  
+    res.render('submit', {
+      address,
+      card,
+      deliveryOption,
+      deliveryAddress,
+      cart,
+    });
   });
 
   
   // Handle the order form submission
   router.post('/submit', (req, res) => {
-    const { creditCard, expirationDate, cvv, deliveryAddress } = req.body;
+    const { address } = req.body;
   
 
     // store order in database
     const newOrder = new Order({
       user: req.session.user._id,
       deliveryOption: req.session.deliveryOption,
-      deliveryAddress: req.session.deliveryAddress,
+      deliveryAddress: address,
       items: req.session.cart, 
       totalAmount: calculateTotalAmount(req.session.cart), 
     });
@@ -156,9 +171,5 @@ router.post('/options', async (req, res) => {
       });
   });
   
-  // Function to calculate the total amount of the order
-  function calculateTotalAmount(cart) {
-    //make function to iterate over cart items and add total
-  }
   
   module.exports = router;
