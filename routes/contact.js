@@ -30,10 +30,10 @@ router.post('/submit', async (req, res) => {
     const savedContact = await newContact.save();
   
     // Respond with success message or appropriate response
-    res.status(200).json({ message: 'Contact form submitted successfully', savedContact });
+    res.redirect('/contact?success=true');
   } catch (error) {
     // Handle errors if any occurred during the process
-    res.status(500).json({ error: 'Failed to submit contact form', details: error.message });
+    res.redirect('/contact?error=true');
   }
 });
   

@@ -194,3 +194,17 @@
     </div>
   </footer>
 </html>
+
+<script>
+  // Get URL query parameters
+  const params = new URLSearchParams(window.location.search);
+  const success = params.get('success');
+  const error = params.get('error');
+
+  // Display pop-up based on query parameters
+  if (success) {
+      alert('Form submitted successfully!');
+  } else if (error) {
+      alert('Failed to submit the form. Please try again.');
+  }
+</script>
