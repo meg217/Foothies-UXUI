@@ -180,6 +180,7 @@
 
           <label for="postalCode" class="form-label">Postal Code:</label>
           <input type="text" id="postalCode" name="zip" class="form-control" />
+          <% if (user.first_name != "Guest") { %>
 
           <label for="saveAddress" class="form-check-label">
             <input
@@ -191,6 +192,8 @@
             />
             Save this address for future orders
           </label>
+
+          <% } %>
         </div>
 
         <!-- Pickup/Delivery option -->
@@ -258,7 +261,7 @@
 
           <label for="cvv" class="form-label">CVV/CVC:</label>
           <input type="text" id="cvv" name="cvv" class="form-control" />
-
+          <% if (user.first_name != "Guest") { %>
           <label for="saveCard" class="form-check-label">
             <input
               type="checkbox"
@@ -269,6 +272,7 @@
             />
             Save this card for future purchases
           </label>
+          <% } %>
         </div>
 
         <div class="mb-3">
