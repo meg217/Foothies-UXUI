@@ -130,15 +130,16 @@
         <h3>Our Information</h3>
         <p><strong>Company Name:</strong> Foothies Inc.</p>
         <p><strong>Address:</strong> 123 Main Street, San Antonio, Texas, USA</p>
-        <p><strong>Phone:</strong> +1 234-567-890</p>
-        <p><strong>Email:</strong> info@yourcompany.com</p>
+        <p><strong>Customer Service Phone:</strong> +1 234-567-890</p>
+        <p><strong>Customer Service Email:</strong> customer_service@foothies.com</p>
         <p><strong>Business Hours:</strong> Weekdays, 9 AM - 10 PM, Weekends, 9 AM - 6 PM </p>
         <p></p>
       </div>
 
       <!-- Contact Form -->
       <div class="col-md-6">
-        <h3>Contact Form</h3>
+        <h3>Feedback Form</h3>
+        <p><strong>Feedback is used for suggestions to improve the site, if you have an issues that requires personal assitance then please contact customer service through the channels provided.</strong> </p>
         <form action="/contact/submit" method="POST">
           <div class="mb-3">
             <label for="name" class="form-label">Your Name</label>
@@ -194,3 +195,17 @@
     </div>
   </footer>
 </html>
+
+<script>
+  // Get URL query parameters
+  const params = new URLSearchParams(window.location.search);
+  const success = params.get('success');
+  const error = params.get('error');
+
+  // Display pop-up based on query parameters
+  if (success) {
+      alert('Form submitted successfully!');
+  } else if (error) {
+      alert('Failed to submit the form. Please try again.');
+  }
+</script>
