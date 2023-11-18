@@ -160,7 +160,7 @@ router.get("/submit", (req, res) => {
 router.post("/submit", (req, res) => {
   const { deliveryAddress, totalAmount } = req.body;
 
-  // store order in database
+  // Store order in the database
   const newOrder = new Order({
     user: req.session.user._id,
     deliveryOption: req.session.deliveryOption,
@@ -176,9 +176,21 @@ router.post("/submit", (req, res) => {
       // Clear the user's cart after the order is placed
       req.session.cart = [];
 
-      // Redirect to a confirmation page or display a success message like "checkmark order comfirmed"
-      console.log("Order saved:", order);
-      //res.redirect("/orderOpt/confirmation");
+      // Fetch the user from the database
+      return User.findById(req.session.user._id);
+    })
+    .then((user) => {
+      // Update the user's points
+      // Assuming totalAmount is a positive integer
+      user.points = (user.points || 0) + Math.ceil(totalAmount);
+
+      // Save the updated user to the database
+      return user.save();
+    })
+    .then(() => {
+      // Redirect to a confirmation page or display a success message like "checkmark order confirmed"
+      console.log("Order saved");
+      req.session.destroy();
       res.render("confirm", {
         totalAmount,
       });
