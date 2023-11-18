@@ -137,7 +137,11 @@
     <div class = "container-fluid text-lg-center p-5 bg-light">
         <h3 class="display-2"><strong>Current Points</strong></h3>
         <br>
-        <p class="display-2">20</p>
+        <% if (user.first_name === "Guest") { %>
+          <p class="display-4">You are currently a guest. Log in to view your points!</p>
+        <% } else { %>
+          <p class="display-2"><%= points %></p>
+        <% } %>
     </div>
 
     <div class = "container">
