@@ -12,6 +12,8 @@ const isAuthenticated = (req, res, next) => {
   res.redirect('/auth/login'); // User is not authenticated, redirect to the login page
 };
 
+
+
 router.get('/profile', isAuthenticated, (req, res) => {
   // Render the user's profile, retrieve user data, and serve appropriate pages
   res.render('profile', { user: req.session.user });

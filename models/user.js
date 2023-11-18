@@ -52,6 +52,11 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'card', 
   },
+  points: {
+    type: Number,
+    required: false,
+    integer: true,
+  },
 });
 
 const User = mongoose.model("user", UserSchema);
