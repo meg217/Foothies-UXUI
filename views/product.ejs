@@ -113,11 +113,15 @@
               aria-expanded="false"
               style="font-size: 20px"
             >
-              <% if (user) { %> <%=
-              user.first_name[0].toUpperCase()+user.last_name[0].toUpperCase()
-              %> <% } else { %>
-              <i class="bi bi-person fs-2"></i>
+            <% if (user) { %>
+              <% if (user.first_name === "Guest") { %>
+                <%= user.first_name %>
+              <% } else { %>
+              <%= user.first_name[0].toUpperCase()+user.last_name[0].toUpperCase() %>
               <% } %>
+            <% } else { %>
+              <i class="bi bi-person fs-2"></i>
+            <% } %>
             </button>
             <ul
               class="dropdown-menu dropdown-menu-end"

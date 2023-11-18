@@ -26,215 +26,266 @@
     <link type="text/css" href="/css/bootstrap.css" rel="stylesheet" />
     <link type="text/css" href="/css/styles.css" rel="stylesheet" />
   </head>
-  <body style="background-color: #c3f6fc;">
-   <!-- Navbar -->
-   <nav
-   class="navbar navbar-expand-lg navbar-light bg-light"
- >
-   <div class="container">
-     <!-- Logo on the left (larger size) -->
-     <a href="/" class="navbar-brand">
-       <img
-         src="/assets/FoothiesLogoTransparent.png"
-         alt="Logo"
-         style="
-         width: calc(180px + 1vmin)"
-       />
-     </a>
+  <body style="background-color: #c3f6fc">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <!-- Logo on the left (larger size) -->
+        <a href="/" class="navbar-brand">
+          <img
+            src="/assets/FoothiesLogoTransparent.png"
+            alt="Logo"
+            style="width: calc(180px + 1vmin)"
+          />
+        </a>
 
-     <button
-       class="navbar-toggler"
-       type="button"
-       data-bs-toggle="collapse"
-       data-bs-target="#main-nav"
-     >
-       <span class="navbar-toggler-icon"></span>
-     </button>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#main-nav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-     <div id="main-nav" class="collapse navbar-collapse">
-       <ul class="navbar-nav mx-auto nav-justified">
-         <li class="nav-item m-lg-4">
-           <a
-             href="/"
-             class="nav-link fs-5 underline-on-hover"
-             >Home</a
-           >
-         </li>
-         <li class="nav-item m-lg-4">
-           <a href="/menu/all" class="nav-link fs-5 underline-on-hover">Menu</a>
-         </li>
-         <li class="nav-item m-lg-4">
-           <a href="/contact" class="nav-link fs-5 underline-on-hover"
-             >Contact</a
-           >
-         </li>
-         <li class="nav-item m-lg-4">
-           <a href="/rewards" class="nav-link fs-5 underline-on-hover"
-             >Rewards</a
-           >
-         </li>
-       </ul>
+        <div id="main-nav" class="collapse navbar-collapse">
+          <ul class="navbar-nav mx-auto nav-justified">
+            <li class="nav-item m-lg-4">
+              <a href="/" class="nav-link fs-5 underline-on-hover">Home</a>
+            </li>
+            <li class="nav-item m-lg-4">
+              <a href="/menu/all" class="nav-link fs-5 underline-on-hover"
+                >Menu</a
+              >
+            </li>
+            <li class="nav-item m-lg-4">
+              <a href="/contact" class="nav-link fs-5 underline-on-hover"
+                >Contact</a
+              >
+            </li>
+            <li class="nav-item m-lg-4">
+              <a href="/rewards" class="nav-link fs-5 underline-on-hover"
+                >Rewards</a
+              >
+            </li>
+          </ul>
 
-       <!-- Order Now button -->
-       <a class="btn btn-primary mx-lg-5 fs-5" href="/auth/login"
-         >Order Now</a
-       >
+          <!-- Order Now button -->
+          <a class="btn btn-primary mx-lg-5 fs-5" href="/auth/login"
+            >Order Now</a
+          >
 
-       <!-- Profile dropdown button with a circular person icon -->
-       <div class="dropdown">
-         <button
-           class="btn btn-secondary dropdown-toggle"
-           type="button"
-           id="profileDropdown"
-           data-bs-toggle="dropdown"
-           aria-expanded="false"
-           style="font-size: 20px;"
-         >
-         <% if (user) { %>
-          <%= user.first_name[0].toUpperCase()+user.last_name[0].toUpperCase() %>
-        <% } else { %>
-          <i class="bi bi-person fs-2"></i>
-        <% } %>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-        <% if (user) { %>
-          <!-- <li>
+          <!-- Profile dropdown button with a circular person icon -->
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="profileDropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style="font-size: 20px"
+            >
+              <% if (user) { %> <% if (user.first_name === "Guest") { %> <%=
+              user.first_name %> <% } else { %> <%=
+              user.first_name[0].toUpperCase()+user.last_name[0].toUpperCase()
+              %> <% } %> <% } else { %>
+              <i class="bi bi-person fs-2"></i>
+              <% } %>
+            </button>
+            <ul
+              class="dropdown-menu dropdown-menu-end"
+              aria-labelledby="profileDropdown"
+            >
+              <% if (user) { %>
+              <!-- <li>
             <a class="dropdown-item" href="/user/settings">Settings</a>
           </li> -->
-          <li>
-            <a class="dropdown-item" href="/auth/logout">Log Out</a>
-          </li>
-        <% } else { %>
-          <li>
-            <a class="dropdown-item" id="loginButton" href="/auth/login">Login</a>
-          </li>
-          <li>
-            <a class="dropdown-item" id="signupButton" href="/auth/register">Sign Up</a>
-          </li>
-        <% } %>
-      </ul>
-       </div>
-     </div>
-   </div>
- </nav>
+              <li>
+                <a class="dropdown-item" href="/auth/logout">Log Out</a>
+              </li>
+              <% } else { %>
+              <li>
+                <a class="dropdown-item" id="loginButton" href="/auth/login"
+                  >Login</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" id="signupButton" href="/auth/register"
+                  >Sign Up</a
+                >
+              </li>
+              <% } %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-  <!-- back button -->
-  <div class="container">
-    <button
-      type="button"
-      onclick="goBack()"
-      class="btn btn-primary btn-back"
-    >
-      <i class="bi bi-arrow-left"></i> Back
-    </button>
-  </div>
-
- <div class="container mt-4" style="background-color:white; padding:40px">
-  <h2>Place an Order</h2>
-
-  <form action="/orderOpt/options" method="POST">
-    <!-- Pickup/Delivery option -->
-    <div class="mb-3">
-      <label for="deliveryOption" class="form-label"><strong>Choose Pickup or Delivery:</strong></label>
-      <select class="form-select" id="deliveryOption" name="deliveryOption" required>
-        <option value="pickup">Pickup</option>
-        <% if (user.first_name === "Guest") { %>
-          <option value="new">Delivery - Enter New Address</option>
-        <% } else { %>
-          <option value="saved">Delivery - Use Saved Address</option>
-          <option value="new">Delivery - Enter New Address</option>
-        <% } %>
-      </select>
+    <!-- back button -->
+    <div class="container">
+      <button type="button" onclick="goBack()" class="btn btn-primary btn-back">
+        <i class="bi bi-arrow-left"></i> Back
+      </button>
     </div>
 
-    <!-- Saved address (displayed if the user has a saved address) -->
-  
-    <div class="mb-3" id="savedAddress">
-      <label class="form-label">Saved Address:</label>
-      <% if (savedAddress.street == null) { %>
-        <p>No address on record, please enter a new address</p>
-      <% } else { %>
-        <p><%= savedAddress.street %>, <%= savedAddress.city %>, <%= savedAddress.state %></p>
-      <% } %>
-    </div>
+    <div class="container mt-4" style="background-color: white; padding: 40px">
+      <h2>Place an Order</h2>
 
-    <!-- New address input (displayed if the user chooses "Delivery - Enter New Address") -->
-    <div class="mb-3" id="newAddress" style="display: none;">
-      <label for="street" class="form-label">Street:</label>
-      <input type="text" id="street" name="street" class="form-control">
-    
-      <label for="city" class="form-label">City:</label>
-      <input type="text" id="city" name="city" class="form-control">
-    
-      <label for="state" class="form-label">State:</label>
-      <input type="text" id="state" name="state" class="form-control">
-    
-      <label for="postalCode" class="form-label">Postal Code:</label>
-      <input type="text" id="postalCode" name="zip" class="form-control">
-      
-      <label for="saveAddress" class="form-check-label">
-        <input type="checkbox" id="saveAddress" name="saveAddress" class="form-check-input" value="save">
-        Save this address for future orders
-      </label>
-      
-    </div>
+      <form action="/orderOpt/options" method="POST">
+        <!-- Pickup/Delivery option -->
+        <div class="mb-3">
+          <label for="deliveryOption" class="form-label"
+            ><strong>Choose Pickup or Delivery:</strong></label
+          >
+          <select
+            class="form-select"
+            id="deliveryOption"
+            name="deliveryOption"
+            required
+          >
+            <option value="pickup">Pickup</option>
+            <% if (user.first_name === "Guest") { %>
+            <option value="new">Delivery - Enter New Address</option>
+            <% } else { %>
+            <option value="saved">Delivery - Use Saved Address</option>
+            <option value="new">Delivery - Enter New Address</option>
+            <% } %>
+          </select>
+        </div>
 
+        <!-- Saved address (displayed if the user has a saved address) -->
 
-      <!-- Pickup/Delivery option -->
-      <div class="mb-3">
-        <label for="cardOption" class="form-label"><strong>Choose a payment method:</strong></label>
-        <select class="form-select" id="cardOption" name="cardOption" required>
-          <% if (user.first_name === "Guest") { %>
-            <option value="new">Enter Card Information</option>
+        <div class="mb-3" id="savedAddress">
+          <label class="form-label">Saved Address:</label>
+          <% if (savedAddress.street == null) { %>
+          <p>No address on record, please enter a new address</p>
           <% } else { %>
+          <p>
+            <%= savedAddress.street %>, <%= savedAddress.city %>, <%=
+            savedAddress.state %>
+          </p>
+          <% } %>
+        </div>
+
+        <!-- New address input (displayed if the user chooses "Delivery - Enter New Address") -->
+        <div class="mb-3" id="newAddress" style="display: none">
+          <label for="street" class="form-label">Street:</label>
+          <input type="text" id="street" name="street" class="form-control" />
+
+          <label for="city" class="form-label">City:</label>
+          <input type="text" id="city" name="city" class="form-control" />
+
+          <label for="state" class="form-label">State:</label>
+          <input type="text" id="state" name="state" class="form-control" />
+
+          <label for="postalCode" class="form-label">Postal Code:</label>
+          <input type="text" id="postalCode" name="zip" class="form-control" />
+          <% if (user.first_name != "Guest") { %>
+
+          <label for="saveAddress" class="form-check-label">
+            <input
+              type="checkbox"
+              id="saveAddress"
+              name="saveAddress"
+              class="form-check-input"
+              value="save"
+            />
+            Save this address for future orders
+          </label>
+
+          <% } %>
+        </div>
+
+        <!-- Pickup/Delivery option -->
+        <div class="mb-3">
+          <label for="cardOption" class="form-label"
+            ><strong>Choose a payment method:</strong></label
+          >
+          <select
+            class="form-select"
+            id="cardOption"
+            name="cardOption"
+            required
+          >
+            <% if (user.first_name === "Guest") { %>
+            <option value="new">Enter Card Information</option>
+            <% } else { %>
             <option value="saved">Card - Use a Saved Card</option>
             <option value="new">Card - Enter a new Card</option>
+            <% } %>
+          </select>
+        </div>
+
+        <!-- Saved card (displayed if the user has a saved card) -->
+        <div class="mb-3" id="savedCard">
+          <label class="form-label">Saved Card Information:</label>
+          <% if (savedCard.card_number == null) { %>
+          <p>No card on record, please enter a new payment method</p>
+          <% } else { %>
+          <p>
+            <%= savedCard.card_number %>, <%= savedCard.expiration_date %>, <%=
+            savedAddress.state %>
+          </p>
           <% } %>
-        </select>
-      </div>
+        </div>
 
+        <!-- New card input (displayed if the user chooses "Card - Enter New Card") -->
+        <div class="mb-3" id="newCard" style="display: none">
+          <label for="card_fullname" class="form-label"
+            >Full Name on Card:</label
+          >
+          <input
+            type="text"
+            id="card_fullname"
+            name="card_fullname"
+            class="form-control"
+          />
 
-    <!-- Saved card (displayed if the user has a saved card) -->
-    <div class="mb-3" id="savedCard">
-      <label class="form-label">Saved Card Information:</label>
-      <% if (savedCard.card_number == null) { %>
-        <p>No card on record, please enter a new payment method</p>
-      <% } else { %>
-        <p><%= savedCard.card_number %>, <%= savedCard.expiration_date %>, <%= savedAddress.state %></p>
-      <% } %>
+          <label for="card_number" class="form-label">Card Number:</label>
+          <input
+            type="text"
+            id="card_number"
+            name="card_number"
+            class="form-control"
+          />
+
+          <label for="expiration_date" class="form-label"
+            >Expiration Date:</label
+          >
+          <input
+            type="text"
+            id="expiration_date"
+            name="expiration_date"
+            class="form-control"
+          />
+
+          <label for="cvv" class="form-label">CVV/CVC:</label>
+          <input type="text" id="cvv" name="cvv" class="form-control" />
+          <% if (user.first_name != "Guest") { %>
+          <label for="saveCard" class="form-check-label">
+            <input
+              type="checkbox"
+              id="saveCard"
+              name="saveCard"
+              class="form-check-input"
+              value="save"
+            />
+            Save this card for future purchases
+          </label>
+          <% } %>
+        </div>
+
+        <div class="mb-3">
+          <button type="submit" class="btn btn-primary">Continue</button>
+        </div>
+      </form>
     </div>
 
-    <!-- New card input (displayed if the user chooses "Card - Enter New Card") -->
-    <div class="mb-3" id="newCard" style="display: none;">
-      <label for="card_fullname" class="form-label">Full Name on Card:</label>
-      <input type="text" id="card_fullname" name="card_fullname" class="form-control">
-    
-      <label for="card_number" class="form-label">Card Number:</label>
-      <input type="text" id="card_number" name="card_number" class="form-control">
-    
-      <label for="expiration_date" class="form-label">Expiration Date:</label>
-      <input type="text" id="expiration_date" name="expiration_date" class="form-control">
-    
-      <label for="cvv" class="form-label">CVV/CVC:</label>
-      <input type="text" id="cvv" name="cvv" class="form-control">
-      
-      <label for="saveCard" class="form-check-label">
-        <input type="checkbox" id="saveCard" name="saveCard" class="form-check-input" value="save">
-        Save this card for future purchases
-      </label>
-    </div>
-
-    <div class="mb-3">
-      <button type="submit" class="btn btn-primary">Continue</button>
-    </div>
-  </form>
-</div>
-
-<script>
-  function goBack() {
-    window.history.back();
-  }
-</script>
+    <script>
+      function goBack() {
+        window.history.back();
+      }
+    </script>
 
     <!-- Bootstrap core JS-->
     <link rel="stylesheet" href="css/bootstrap.css" />
