@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
+const mongoose = require('mongoose')
 const Contact = require('../models/contactForms');
 
 // Display the order page
@@ -12,7 +13,6 @@ router.get('/', (req, res) => {
     res.render('contact');
   });
 
-  module.exports = router;
 
 router.post('/submit', async (req, res) => {
   try {
@@ -33,7 +33,7 @@ router.post('/submit', async (req, res) => {
     res.status(200).json({ message: 'Contact form submitted successfully', savedContact });
   } catch (error) {
     // Handle errors if any occurred during the process
-      res.status(500).json({ error: 'Failed to submit contact form', details: error.message });
+    res.status(500).json({ error: 'Failed to submit contact form', details: error.message });
   }
 });
   
