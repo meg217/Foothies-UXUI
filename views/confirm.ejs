@@ -144,7 +144,11 @@
 <div class="success-container">
     <div class="checkmark">&#10004;</div>
     <div class="message">Success! Your order has been placed.</div>
-    <div class="message"><%= Math.ceil(totalAmount) %> points has been added to your account!</div>
+    <% if (user.first_name === "Guest") { %>
+      <div class="message">To recieve points on future purchases, <a href="destroy">create an account</a> with us today!</div>
+    <% } else { %>
+      <div class="message"><%= Math.ceil(totalAmount) %> points has been added to your account!</div>
+    <% } %>
     <a href="/" class="btn btn-primary mt-3">Back to Home</a>
 </div>
 </div>
