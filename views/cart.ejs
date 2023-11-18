@@ -159,7 +159,7 @@
           <tr>
             <td><strong><%= item.product.name %></strong></td>
             <td><%= item.quantity %></td>
-            <td>$<%= item.product.price * item.quantity %></td>
+            <td>$<%= (item.product.price * item.quantity).toFixed(2) %></td>
           </tr>
           <% totalQuantity += item.quantity; %>
           <% totalAmount += item.product.price * item.quantity; %>
@@ -170,7 +170,7 @@
         </tr>
         <tr>
           <td colspan="2" class="font-weight-bold">Subtotal:</td>
-          <td class="font-weight-bold">$<%= totalAmount %></td>
+          <td class="font-weight-bold">$<%= totalAmount.toFixed(2) %></td>
         </tr>
       </tbody>
     </table>
