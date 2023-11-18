@@ -154,7 +154,7 @@ router.post("/register", (req, res) => {
             street: null,
             zip: null,
           },
-          points: 0,
+          points: 5,
         });
 
         const newCard = new Card({
