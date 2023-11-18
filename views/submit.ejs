@@ -9,7 +9,10 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Shopping Cart</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
     <link rel="icon" type="image/x-icon" href="assets/logo.png" />
     <!-- Bootstrap icons-->
     <link
@@ -24,170 +27,169 @@
       type="text/css"
     />
     <!-- Core theme -->
-    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="/css/style.css" rel="stylesheet" type="text/css" />
   </head>
   <body style="background-color: #c3f6fc">
-   <!-- Navbar -->
-   <nav
-   class="navbar navbar-expand-lg navbar-light bg-light"
- >
-   <div class="container">
-     <!-- Logo on the left (larger size) -->
-     <a href="/" class="navbar-brand">
-       <img
-         src="/assets/FoothiesLogoTransparent.png"
-         alt="Logo"
-         style="
-         width: calc(180px + 1vmin)"
-       />
-     </a>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <!-- Logo on the left (larger size) -->
+        <a href="/" class="navbar-brand">
+          <img
+            src="/assets/FoothiesLogoTransparent.png"
+            alt="Logo"
+            style="width: calc(180px + 1vmin)"
+          />
+        </a>
 
-     <button
-       class="navbar-toggler"
-       type="button"
-       data-bs-toggle="collapse"
-       data-bs-target="#main-nav"
-     >
-       <span class="navbar-toggler-icon"></span>
-     </button>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#main-nav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-     <div id="main-nav" class="collapse navbar-collapse">
-       <ul class="navbar-nav mx-auto nav-justified">
-         <li class="nav-item m-lg-4">
-           <a
-             href="/"
-             class="nav-link fs-5 underline-on-hover"
-             >Home</a
-           >
-         </li>
-         <li class="nav-item m-lg-4">
-           <a href="/menu/all" class="nav-link fs-5 underline-on-hover">Menu</a>
-         </li>
-         <li class="nav-item m-lg-4">
-           <a href="/contact" class="nav-link fs-5 underline-on-hover"
-             >Contact</a
-           >
-         </li>
-         <li class="nav-item m-lg-4">
-           <a href="/rewards" class="nav-link fs-5 underline-on-hover"
-             >Rewards</a
-           >
-         </li>
-       </ul>
+        <div id="main-nav" class="collapse navbar-collapse">
+          <ul class="navbar-nav mx-auto nav-justified">
+            <li class="nav-item m-lg-4">
+              <a href="/" class="nav-link fs-5 underline-on-hover">Home</a>
+            </li>
+            <li class="nav-item m-lg-4">
+              <a href="/menu/all" class="nav-link fs-5 underline-on-hover"
+                >Menu</a
+              >
+            </li>
+            <li class="nav-item m-lg-4">
+              <a href="/contact" class="nav-link fs-5 underline-on-hover"
+                >Contact</a
+              >
+            </li>
+            <li class="nav-item m-lg-4">
+              <a href="/rewards" class="nav-link fs-5 underline-on-hover"
+                >Rewards</a
+              >
+            </li>
+          </ul>
 
-       <!-- "Order Now" button -->
-       <a class="btn btn-primary mx-lg-5 fs-5" href="/auth/login"
-         >Order Now</a
-       >
+          <!-- "Order Now" button -->
+          <a class="btn btn-primary mx-lg-5 fs-5" href="/auth/login"
+            >Order Now</a
+          >
 
-       <!-- Profile dropdown button with a circular person icon -->
-       <div class="dropdown">
-         <button
-           class="btn btn-secondary dropdown-toggle"
-           type="button"
-           id="profileDropdown"
-           data-bs-toggle="dropdown"
-           aria-expanded="false"
-           style="font-size: 20px;"
-         >
-         <% if (user) { %>
-          <%= user.first_name[0].toUpperCase()+user.last_name[0].toUpperCase() %>
-        <% } else { %>
-          <i class="bi bi-person fs-2"></i>
-        <% } %>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-        <% if (user) { %>
-          <!-- <li>
+          <!-- Profile dropdown button with a circular person icon -->
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="profileDropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style="font-size: 20px"
+            >
+              <% if (user) { %> <% if (user.first_name === "Guest") { %> <%=
+              user.first_name %> <% } else { %> <%=
+              user.first_name[0].toUpperCase()+user.last_name[0].toUpperCase()
+              %> <% } %> <% } else { %>
+              <i class="bi bi-person fs-2"></i>
+              <% } %>
+            </button>
+            <ul
+              class="dropdown-menu dropdown-menu-end"
+              aria-labelledby="profileDropdown"
+            >
+              <% if (user) { %>
+              <!-- <li>
             <a class="dropdown-item" href="/user/settings">Settings</a>
           </li> -->
-          <li>
-            <a class="dropdown-item" href="/auth/logout">Log Out</a>
-          </li>
-        <% } else { %>
-          <li>
-            <a class="dropdown-item" id="loginButton" href="/auth/login">Login</a>
-          </li>
-          <li>
-            <a class="dropdown-item" id="signupButton" href="/auth/register">Sign Up</a>
-          </li>
+              <li>
+                <a class="dropdown-item" href="/auth/logout">Log Out</a>
+              </li>
+              <% } else { %>
+              <li>
+                <a class="dropdown-item" id="loginButton" href="/auth/login"
+                  >Login</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" id="signupButton" href="/auth/register"
+                  >Sign Up</a
+                >
+              </li>
+              <% } %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- back button -->
+    <br />
+    <div class="container">
+      <button type="button" onclick="goBack()" class="btn btn-primary btn-back">
+        <i class="bi bi-arrow-left"></i> Back
+      </button>
+    </div>
+
+    <div class="container mt-4" style="background-color: white; padding: 40px">
+      <form action="/orderOpt/submit" method="POST">
+        <h2>Order Summary</h2>
+
+        <p><strong>Delivery Option:</strong> <%= deliveryOption %></p>
+        <% if (deliveryOption !== 'pickup' && deliveryOption !== 'saved') { %>
+        <p>
+          <strong>Delivery Address:</strong> <%= deliveryAddress.street %>, <%=
+          deliveryAddress.city %> <%= deliveryAddress.state %>
+        </p>
         <% } %>
-      </ul>
-       </div>
-     </div>
-   </div>
- </nav>
 
- <!-- back button -->
- <br>
- <div class="container">
-  <button
-    type="button"
-    onclick="goBack()"
-    class="btn btn-primary btn-back"
-  >
-    <i class="bi bi-arrow-left"></i> Back
-  </button>
-</div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% let subtotal = 0; %> <% cart.forEach(item => { %>
+            <tr>
+              <td><strong><%= item.product.name %></strong></td>
+              <td><%= item.quantity %></td>
+              <% const itemTotal = item.product.price * item.quantity; %>
+              <td>$<%= itemTotal.toFixed(2) %></td>
+            </tr>
+            <% subtotal += itemTotal; %> <% }); %>
+          </tbody>
+        </table>
 
+        <% const taxRate = 0.0825; %> <% const taxAmount = parseFloat((taxRate *
+        subtotal).toFixed(2)); %> <% const orderTotal = parseFloat((subtotal +
+        taxAmount).toFixed(2)); %>
 
- <div class="container mt-4" style="background-color: white; padding: 40px">
-    <form action="/orderOpt/submit" method="POST">
-    <h2>Order Summary</h2>
-  
-    <p><strong>Delivery Option:</strong> <%= deliveryOption %></p>
-    <% if (deliveryOption !== 'pickup' && deliveryOption !== 'saved') { %>
-        <p><strong>Delivery Address:</strong> <%= deliveryAddress.street %>, <%= deliveryAddress.city %> <%= deliveryAddress.state %></p>
-    <% } %>
-  
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Product</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% let subtotal = 0; %>
-        <% cart.forEach(item => { %>
-          <tr>
-            <td><strong><%= item.product.name %></strong></td>
-            <td><%= item.quantity %></td>
-            <% const itemTotal = item.product.price * item.quantity; %>
-            <td>$<%= itemTotal.toFixed(2) %></td>
-          </tr>
-          <% subtotal += itemTotal; %>
-        <% }); %>
-      </tbody>
-    </table>
-  
-    <% const taxRate = 0.0825; %>
-    <% const taxAmount = parseFloat((taxRate * subtotal).toFixed(2)); %>
-    <% const orderTotal = parseFloat((subtotal + taxAmount).toFixed(2)); %>
-  
-    <p><strong>Subtotal:</strong> $<%= subtotal.toFixed(2) %></p>
-    <p><strong>Tax (8.25%):</strong> $<%= taxAmount.toFixed(2) %></p>
-    <p><strong>Total Amount (including tax):</strong> $<%= orderTotal.toFixed(2) %></p>
-  
+        <p><strong>Subtotal:</strong> $<%= subtotal.toFixed(2) %></p>
+        <p><strong>Tax (8.25%):</strong> $<%= taxAmount.toFixed(2) %></p>
+        <p>
+          <strong>Total Amount (including tax):</strong> $<%=
+          orderTotal.toFixed(2) %>
+        </p>
 
+        <input
+          type="hidden"
+          name="totalAmount"
+          value="<%= orderTotal.toFixed(2) %>"
+        />
+        <button type="submit" class="btn btn-primary">Place Order</button>
+      </form>
+    </div>
 
-      <input type="hidden" name="totalAmount" value="<%= orderTotal.toFixed(2) %>">
-      <button type="submit" class="btn btn-primary">Place Order</button>
-    </form>
-  
-  </div>
-  
-  
-  
-
-<script>
-    function goBack() {
-      window.history.back();
-    }
-  </script>
-
+    <script>
+      function goBack() {
+        window.history.back();
+      }
+    </script>
 
     <!-- Bootstrap core JS-->
     <link rel="stylesheet" href="css/bootstrap.css" />
