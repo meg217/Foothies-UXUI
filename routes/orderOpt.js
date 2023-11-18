@@ -189,4 +189,9 @@ router.post("/submit", (req, res) => {
     });
 });
 
+router.get("/destroy", (req, res) => {
+  req.session.destroy();
+  res.redirect("/auth/register");
+});
+
 module.exports = router;
