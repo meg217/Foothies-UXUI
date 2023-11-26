@@ -157,7 +157,7 @@
             <% let subtotal = 0; %> <% cart.forEach(item => { %>
             <tr>
               <td><strong><%= item.product.name %></strong></td>
-              <td><%= item.quantity %></td>
+              <td><strong><%= item.quantity %></strong></td>
               <% const itemTotal = item.product.price * item.quantity; %>
               <td>$<%= itemTotal.toFixed(2) %></td>
             </tr>
@@ -169,11 +169,11 @@
         subtotal).toFixed(2)); %> <% const orderTotal = parseFloat((subtotal +
         taxAmount).toFixed(2)); %>
 
-        <p><strong>Subtotal:</strong> $<%= subtotal.toFixed(2) %></p>
-        <p><strong>Tax (8.25%):</strong> $<%= taxAmount.toFixed(2) %></p>
+        <p><strong>Subtotal:</strong><b> $<%= subtotal.toFixed(2) %></b></p>
+        <p><strong>Tax (8.25%):</strong><b>$<%= taxAmount.toFixed(2) %></b></p>
         <p>
-          <strong>Total Amount (including tax):</strong> $<%=
-          orderTotal.toFixed(2) %>
+          <strong>Total Amount (including tax):</strong><b>$<%=
+            orderTotal.toFixed(2) %></b> 
         </p>
 
         <input
