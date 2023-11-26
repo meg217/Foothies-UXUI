@@ -8277,7 +8277,9 @@ fieldset:disabled .btn {
 }
 
 .fw-normal {
+  font-size: 24px;
   font-weight: 400 !important;
+  color: #000;
 }
 
 .fw-bold {
@@ -11415,4 +11417,16 @@ footer.footer {
 
 .btn-back:hover {
   background-color: #0056b3; /* Darker shade for hover effect */
+}
+
+.custom-paragraph {
+  font-size: 18px;
+  font-weight: bold;
+  color:#000;
+}
+
+.home-paras {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color:#000;
 }
