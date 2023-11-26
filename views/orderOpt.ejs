@@ -224,7 +224,8 @@
           <p>No card on record, please enter a new payment method</p>
           <% } else { %>
           <p>
-            <%= savedCard.card_number %>, <%= savedCard.expiration_date %>, <%=
+            XXXX-XXXX-XXXX-<%= savedCard.card_number.slice(-4) %>,
+            <%= savedCard.expiration_date %>, <%= savedCard.expiration_date %>, <%=
             savedAddress.state %>
           </p>
           <% } %>
