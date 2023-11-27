@@ -196,7 +196,7 @@
           <% } %>
         </div>
 
-        <!-- Pickup/Delivery option -->
+        <!-- Payment option -->
         <div class="mb-3">
           <label for="cardOption" class="form-label"
             ><strong>Choose a payment method:</strong></label
@@ -232,7 +232,15 @@
           </p>
           <% } %>
         </div>
-        <p class="custom-paragraph">User's Total Points: <%= Number(userPoints) %></p>
+        <% if (user.first_name !== "Guest") { %>
+          <p class="custom-paragraph">User's Total Points: <%= Number(userPoints) %></p>
+          <% if (userPoints < Math.ceil(totalAmount / 0.2)) { %>
+            <p>Points required: <%= Math.ceil(totalAmount / 0.2) %> <br></p>
+            <p style="color: rgb(165, 10, 10)">Not enough Points for Purchase</p>
+          <% } else { %>
+            <p>Points required: <%= Math.ceil(totalAmount / 0.2) %></p>
+          <% }%>
+        <% }%>
         <!-- New card input (displayed if the user chooses "Card - Enter New Card") -->
         <div class="mb-3" id="newCard" style="display: none">
           <label for="card_fullname" class="form-label"
