@@ -18,6 +18,7 @@ router.get("/", (req, res) => {
   }
 
   const userId = req.session.user._id;
+  const totalAmount = req.query.totalAmount;
   let foundUser; // Define user in a broader scope
 
   // Fetch the user
@@ -29,7 +30,6 @@ router.get("/", (req, res) => {
       // Fetch the user's saved card from the database
       console.log("userId to find for card:", userId);
       console.log("user to find for card:", user._id);
-
       // Fetch the user's saved card from the database
       return Card.findOne({ user: user });
     })
@@ -42,11 +42,15 @@ router.get("/", (req, res) => {
         res.render("orderOpt", {
           savedAddress: foundUser.address,
           savedCard: card,
+          totalAmount: totalAmount,
+          userPoints: foundUser.points,
         });
       } else if (card) {
         res.render("orderOpt", {
           savedAddress: foundUser.address,
           savedCard: card,
+          totalAmount: totalAmount,
+          userPoints: foundUser.points,
         });
       }
     })
@@ -182,7 +186,14 @@ router.post("/submit", (req, res) => {
     .then((user) => {
       // Update the user's points
       // Assuming totalAmount is a positive integer
-      user.points = (user.points || 0) + Math.ceil(totalAmount);
+      if (req.session.cardOption === "points") 
+      {
+          user.points -= Math.ceil(totalAmount/0.2);
+      } 
+      else 
+      {
+        user.points += Math.ceil(totalAmount);
+      }
 
       // Save the updated user to the database
       return user.save();

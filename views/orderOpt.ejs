@@ -212,7 +212,9 @@
             <% } else { %>
             <option value="saved">Card - Use a Saved Card</option>
             <option value="new">Card - Enter a new Card</option>
+            <% if (userPoints>= Math.ceil(totalAmount / 0.2)) { %>
             <option value="points">Points - Pay with points</option>
+            <% }%>
             <% } %>
           </select>
         </div>
@@ -230,7 +232,7 @@
           </p>
           <% } %>
         </div>
-
+        <p>User's Total Points: <%= Number(userPoints) %></p>
         <!-- New card input (displayed if the user chooses "Card - Enter New Card") -->
         <div class="mb-3" id="newCard" style="display: none">
           <label for="card_fullname" class="form-label"
@@ -276,7 +278,6 @@
           </label>
           <% } %>
         </div>
-
         <div class="mb-3">
           <button type="submit" class="btn btn-primary">Continue</button>
         </div>
