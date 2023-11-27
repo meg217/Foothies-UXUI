@@ -150,9 +150,11 @@
     <div class="message">Success! Your order has been placed.</div>
     <% if (user.first_name === "Guest") { %>
       <div class="message">To recieve points on future purchases, <a href="destroy">create an account</a> with us today!</div>
-    <% } else { %>
+    <% } else if(payedWithPoints == false) { %>
       <div class="message"><%= Math.ceil(totalAmount) %> points has been added to your account!</div>
-    <% } %>
+    <% } else if(payedWithPoints == true) { %>
+      <div class="message"><%= Math.ceil(totalAmount)/0.2 %> points have been used!</div>
+    <%}%>
     <a href="/" class="btn btn-primary mt-3">Back to Home</a>
 </div>
 </div>

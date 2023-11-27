@@ -163,7 +163,7 @@ router.get("/submit", (req, res) => {
 // Handle the order form submission
 router.post("/submit", (req, res) => {
   const { deliveryAddress, totalAmount } = req.body;
-
+  const cOpt = req.session.cardOption;
   // Store order in the database
   const newOrder = new Order({
     user: req.session.user._id,
@@ -186,7 +186,7 @@ router.post("/submit", (req, res) => {
     .then((user) => {
       // Update the user's points
       // Assuming totalAmount is a positive integer
-      if (req.session.cardOption === "points") 
+      if (cOpt === "points") 
       {
           user.points -= Math.ceil(totalAmount/0.2);
       } 
@@ -199,11 +199,18 @@ router.post("/submit", (req, res) => {
       return user.save();
     })
     .then(() => {
+      
+      let payedWithPoints = false;
       // Redirect to a confirmation page or display a success message like "checkmark order confirmed"
       console.log("Order saved");
       req.session.destroy();
+      if (cOpt=== "points") 
+      {
+        payedWithPoints = true;
+      }
       res.render("confirm", {
         totalAmount,
+        payedWithPoints: payedWithPoints,
       });
     })
     .catch((err) => {
