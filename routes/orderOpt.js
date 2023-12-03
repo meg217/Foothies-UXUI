@@ -186,6 +186,7 @@ router.post("/submit", (req, res) => {
     .then((user) => {
       // Update the user's points
       // Assuming totalAmount is a positive integer
+      if(user.first_name!== "Guest"){
       if (cOpt === "points") 
       {
           user.points -= Math.ceil(totalAmount/0.2);
@@ -197,6 +198,7 @@ router.post("/submit", (req, res) => {
 
       // Save the updated user to the database
       return user.save();
+    }
     })
     .then(() => {
       
